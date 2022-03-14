@@ -10,15 +10,14 @@ import {
 } from '@angular/core';
 
 import { FsListComponent, FsListConfig } from '@firestitch/list';
+import { index } from '@firestitch/common';
 import { ItemType } from '@firestitch/filter';
 
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ISignin } from '../../interfaces/signin';
-import { ISigninAccount } from '../../interfaces/signin-account';
-import { index } from '@firestitch/common';
-import { SigninStates } from 'src/app/consts/signin-states.const';
+import { SigninStates } from '../../consts/signin-states.const';
 
 
 @Component({
