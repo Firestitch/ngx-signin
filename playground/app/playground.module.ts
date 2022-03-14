@@ -19,6 +19,7 @@ import {
 import { AppComponent } from './app.component';
 import { SigninsComponent } from './components/signins';
 import { FsFilterModule } from '@firestitch/filter';
+import { FsDatePickerModule } from '@firestitch/datepicker';
 
 const routes: Routes = [
   { path: '', component: ExamplesComponent },
@@ -39,6 +40,7 @@ const routes: Routes = [
     FsFilterModule.forRoot({ case: 'camel', queryParam: true, chips: true }),
     ToastrModule.forRoot({ preventDuplicates: true }),
     RouterModule.forRoot(routes),
+    FsDatePickerModule.forRoot(),
   ],
   declarations: [
     AppComponent,
