@@ -3,4 +3,6 @@ export interface ISigninIp {
   country?: string;
   region?: string;
   ip?: string;
+  lng?: string;
+  lat?: string;
 }
