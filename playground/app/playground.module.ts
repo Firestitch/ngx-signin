@@ -41,6 +41,7 @@ const routes: Routes = [
     FsFilterModule.forRoot({ case: 'camel', queryParam: true, chips: true }),
     ToastrModule.forRoot({ preventDuplicates: true }),
     RouterModule.forRoot(routes),
+    FsDatePickerModule.forRoot(),
   ],
   declarations: [
     AppComponent,
