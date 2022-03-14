@@ -54,13 +54,27 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
 
   private _initListConfig(): void {
     this.listConfig = {
+      sort: { value: 'create_date', direction: 'desc' },
       filters: [
         {
           name: 'keyword',
           type: ItemType.Keyword,
           label: 'Search',
+        },        
+        {
+          name: 'createDate',
+          type: ItemType.DateRange,
+          label: ['From', 'To'],
+          clear: false,
+        },       
+        {
+          name: 'state',
+          type: ItemType.Select,
+          multiple: true,
+          values: SigninStates,
+          label: 'Status',
         },
-      ],
+      ],      
       fetch: (query) => {
         return this.fetchSignins(query)
           .pipe(

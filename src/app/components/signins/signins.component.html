@@ -44,7 +44,7 @@
       </fs-ip>
     </ng-template>
   </fs-list-column>
-  <fs-list-column title="Date">
+  <fs-list-column name="create_date" [sortable]="true" title="Date">
     <ng-template fs-list-cell let-row="row">
       {{row.createDate | fsDateFormat: 'full-date-time'}}
     </ng-template>

@@ -18,6 +18,7 @@ import {
 } from './components';
 import { AppComponent } from './app.component';
 import { SigninsComponent } from './components/signins';
+import { FsFilterModule } from '@firestitch/filter';
 
 const routes: Routes = [
   { path: '', component: ExamplesComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
     FsStoreModule,
     FsExampleModule.forRoot(),
     FsMessageModule.forRoot(),
+    FsFilterModule.forRoot({ case: 'camel', queryParam: true, chips: true }),
     ToastrModule.forRoot({ preventDuplicates: true }),
     RouterModule.forRoot(routes),
   ],
