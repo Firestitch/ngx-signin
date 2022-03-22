@@ -2,7 +2,7 @@
   "name": "@firestitch/signin",
   "title": "Signin",
   "description": "@firestitch/signin",
-  "version": "12.0.2",
+  "version": "12.0.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-signin"
@@ -76,7 +76,7 @@
     "@firestitch/badge": "^10.0.0",
     "@firestitch/country": "^10.0.13",
     "@firestitch/ip": "^12.0.1",
-    "@firestitch/device": "^12.0.5",
+    "@firestitch/device": "^12.0.8",
     "tsmodels": "^0.4.7",
     "fileapi": "^2.2.0",
     "imask": "^6.4.2",

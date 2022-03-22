@@ -2,11 +2,11 @@ import {
   Component,
   ViewChild,
   Input,
-  Output,
-  EventEmitter,
   ChangeDetectionStrategy,
   OnInit,
   OnDestroy,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 
 import { FsListComponent, FsListConfig } from '@firestitch/list';
@@ -14,10 +14,11 @@ import { index } from '@firestitch/common';
 import { ItemType } from '@firestitch/filter';
 
 import { Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
 
 import { ISignin } from '../../interfaces/signin';
 import { SigninStates } from '../../consts/signin-states.const';
+import { FsPrompt } from '@firestitch/prompt';
 
 
 @Component({
@@ -29,10 +30,16 @@ import { SigninStates } from '../../consts/signin-states.const';
 export class FsSigninsComponent implements OnInit, OnDestroy {
 
   @Input()
-  public fetchSignins = (query: any) => new Observable<{
+  public signinSignOut: (signin: any) => Observable<any>;
+
+  @Input()
+  public signinsFetch: (query: any) => Observable<{
     data: ISignin[];
     paging?: any;
-  }>();
+  }>;
+
+  @Output()
+  public accountClick = new EventEmitter();
 
   @ViewChild(FsListComponent)
   public listComponent: FsListComponent;
@@ -41,6 +48,10 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
   public SigninStates = index(SigninStates, 'value', 'name');
 
   private _destroy$ = new Subject();
+
+  public constructor(
+    private _prompt: FsPrompt,
+  ) {}
 
   public ngOnInit(): void {
     this._initListConfig();
@@ -64,7 +75,6 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
           name: 'createDate',
           type: ItemType.DateRange,
           label: ['From', 'To'],
-          clear: false,
         },       
         {
           name: 'state',
@@ -73,9 +83,28 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
           values: SigninStates,
           label: 'Status',
         },
-      ],      
+      ],   
+      rowActions: this.signinSignOut ? 
+      [
+        {
+          label: 'Sign Out',
+          click: (signout) => {
+            this._prompt.confirm({
+              title: 'Confirm',
+              template: 'Are you sure you would like to sign out this sign in?',
+            })
+            .pipe(
+              switchMap(() => this.signinSignOut(signout)),
+              takeUntil(this._destroy$),
+            )
+            .subscribe(() => {
+              this.listComponent.reload();
+            });
+          }
+        }
+      ] : [],  
       fetch: (query) => {
-        return this.fetchSignins(query)
+        return this.signinsFetch(query)
           .pipe(
             map((response) => {
               return {

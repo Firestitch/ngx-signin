@@ -49,12 +49,6 @@ export class SigninsComponent implements OnInit {
       },
       {
         id: Math.random(),
-        account: {
-          id: Math.random(),
-          name: 'Jane Doe',
-          email: 'test2@gmail.com',
-          avatarUrl: 'https://randomuser.me/api/portraits/women/30.jpg',
-        },
         device: {
           id: Math.random(),
           type: DeviceType.Mobile,
@@ -77,7 +71,11 @@ export class SigninsComponent implements OnInit {
     ];
   }
 
-  public fetchSignins = (query) => {
+  public accountClick(row) {
+    console.log(row);
+  }
+
+  public signinsFetch = (query) => {
     return of({
       data: this.signins,
     });

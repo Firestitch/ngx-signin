@@ -1,12 +1,18 @@
 :host ::ng-deep {
-  .col-name {
+  .col-account {
     .row {
       display: flex;
       align-items: center;
 
-      .name {
-        display: flex;
-        flex-direction: column;
+      fs-badge {
+        margin-right: 8px;
+        font-weight: bold;
+
+        ::ng-deep {
+          .fs-badge-text {
+            font-size: 130%;
+          }
+        }
       }
     }
   }
