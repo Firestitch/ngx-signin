@@ -4,6 +4,7 @@ import { ISignin, SigninState } from '@firestitch/signin';
 import { DeviceType, DeviceBrowser, DeviceOs } from '@firestitch/device';
 
 import { of } from 'rxjs';
+import { SigninVerificationCodeState } from 'src/app/enums/signin-verification-code-state.enum';
 
 
 @Component({
@@ -67,6 +68,12 @@ export class SigninsComponent implements OnInit {
         email: 'admin@admin.com',
         createDate: new Date(),
         state: SigninState.Success,
+        verificationCode: {
+          id: 31233,
+          createDate: new Date(),
+          state: SigninVerificationCodeState.Used,
+          attempts: 2
+        }
       },
     ];
   }

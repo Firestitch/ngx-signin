@@ -20,6 +20,7 @@ import { AppComponent } from './app.component';
 import { SigninsComponent } from './components/signins';
 import { FsFilterModule } from '@firestitch/filter';
 import { FsDatePickerModule } from '@firestitch/datepicker';
+import { FsPopoverModule } from '@firestitch/popover';
 
 const routes: Routes = [
   { path: '', component: ExamplesComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
     FsLabelModule,
     FsStoreModule,
     FsExampleModule.forRoot(),
+    FsPopoverModule.forRoot(),
     FsMessageModule.forRoot(),
     FsDatePickerModule.forRoot(),
     FsFilterModule.forRoot({ case: 'camel', queryParam: true, chips: true }),

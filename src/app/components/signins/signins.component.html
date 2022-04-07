@@ -13,7 +13,6 @@
           </div>
         </div>
       </div>
-
       <ng-template #account>
         {{ row.account?.name || 'Anonymous' }}
       </ng-template>
@@ -24,7 +23,23 @@
       {{SigninStates[row.state]}}
       <div class="small">{{row.message}}</div>
     </ng-template>
-  </fs-list-column>  
+  </fs-list-column> 
+  <fs-list-column title="Verification" align="center">
+    <ng-template fs-list-cell let-row="row">
+      <ng-container *ngIf="row.verificationCode">
+        <fs-popover [template]="codeTmpl">
+          {{row.verificationCode.id}}
+        </fs-popover>
+        <ng-template #codeTmpl>
+          <div class="verification-popover">
+            <div>{{SigninVerificationCodeStates[row.verificationCode.state]}}</div>
+            <div>{{row.verificationCode.attempts}} {{row.verificationCode.attempts === 1 ? 'Attempt' : 'Attempts'}}</div>
+            <div>Created on {{row.verificationCode.createDate | fsDateFormat: 'full-date-time'}}</div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </ng-template>
+  </fs-list-column> 
   <fs-list-column title="Device" align="center">
     <ng-template fs-list-cell let-row="row">
       <fs-device-os

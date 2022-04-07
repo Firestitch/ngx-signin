@@ -9,6 +9,7 @@ import { FsCountryModule } from '@firestitch/country';
 import { FsDeviceModule } from '@firestitch/device';
 import { FsBadgeModule } from '@firestitch/badge';
 import { FsIpModule } from '@firestitch/ip';
+import { FsPopoverModule } from '@firestitch/popover';
 
 import { FsSigninsComponent } from './components/signins/signins.component';
 
@@ -25,6 +26,7 @@ import { FsSigninsComponent } from './components/signins/signins.component';
     FsDeviceModule,
     FsBadgeModule,
     FsIpModule,
+    FsPopoverModule,
   ],
   exports: [
     FsSigninsComponent,

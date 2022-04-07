@@ -4,5 +4,6 @@ export const SigninStates = [
   { name: 'Success', value: SigninState.Success },
   { name: 'Failure', value: SigninState.Failure },
   { name: 'Reset', value: SigninState.Reset },
-  { name: 'Verification Request', value: SigninState.Verification },
+  { name: 'Verification Request', value: SigninState.VerificationRequested },
+  { name: 'Verification Failed', value: SigninState.VerificationFailed },
 ];

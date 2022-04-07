@@ -18,6 +18,7 @@ import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
 
 import { ISignin } from '../../interfaces/signin';
 import { SigninStates } from '../../consts/signin-states.const';
+import { SigninVerificationCodeStates } from '../../consts/signin-verification-code-states.const';
 import { FsPrompt } from '@firestitch/prompt';
 
 
@@ -46,6 +47,7 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
 
   public listConfig: FsListConfig;
   public SigninStates = index(SigninStates, 'value', 'name');
+  public SigninVerificationCodeStates = index(SigninVerificationCodeStates, 'value', 'name');
 
   private _destroy$ = new Subject();
 
