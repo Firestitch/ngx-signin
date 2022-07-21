@@ -63,6 +63,7 @@
   <fs-list-column title="Location">
     <ng-template fs-list-cell let-row="row">
       <fs-ip
+        *ngIf="row.ip"
         [country]="row.ip.country"
         [region]="row.ip.region"
         [ip]="row.ip.ip"
