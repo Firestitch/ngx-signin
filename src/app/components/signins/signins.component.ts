@@ -11,10 +11,10 @@ import {
 
 import { FsListComponent, FsListConfig } from '@firestitch/list';
 import { index } from '@firestitch/common';
-import { ItemType } from '@firestitch/filter';
+import { IFilterConfigItem, ItemType } from '@firestitch/filter';
 
 import { Observable, Subject } from 'rxjs';
-import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { map, switchMap, takeUntil } from 'rxjs/operators';
 
 import { ISignin } from '../../interfaces/signin';
 import { SigninStates } from '../../consts/signin-states.const';
@@ -32,6 +32,12 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
 
   @Input()
   public signinSignOut: (signin: any) => Observable<any>;
+
+  @Input()
+  public appendFilters: IFilterConfigItem[];
+
+  @Input()
+  public prependFilters: IFilterConfigItem[];
 
   @Input()
   public signinsFetch: (query: any) => Observable<{
@@ -68,6 +74,7 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
     this.listConfig = {
       sort: { value: 'create_date', direction: 'desc' },
       filters: [
+        ...(this.prependFilters || []),
         {
           name: 'keyword',
           type: ItemType.Keyword,
@@ -85,6 +92,7 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
           values: SigninStates,
           label: 'Status',
         },
+        ...(this.appendFilters || []),
       ],   
       rowActions: this.signinSignOut ? 
       [
