@@ -9,14 +9,14 @@
     </app-credentials>
   </ng-container>
   <ng-container *ngSwitchCase="'two-factor'">
-    <mat-card-title>2-Step Verification</mat-card-title>
+    <div class="title">2-Step Verification</div>
     <app-two-factor-verification
       [verificationMethod]="verificationMethod"
       (cancelled)="signinMode()">
     </app-two-factor-verification>
   </ng-container>
   <ng-container *ngSwitchCase="'password-reset'">
-    <mat-card-title>{{passwordResetTitle}}</mat-card-title>
+    <div class="title">{{passwordResetTitle}}</div>
     <app-password-reset
       [email]="email"
       (completed)="passwordResetCompleted($event)"
