@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  
+  ::ng-deep {
+    button + button {
+      margin-top: 5px;
+    }
+
+    button {
+      width: 100%;
+      display: block;
+    }
+  }
+}

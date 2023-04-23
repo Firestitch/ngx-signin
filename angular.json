@@ -43,7 +43,10 @@
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
-              "highlight.js"
+              "highlight.js",
+              "qrcode",
+              "date-fns-tz",
+              "crypto-js"
             ]
           },
           "configurations": {

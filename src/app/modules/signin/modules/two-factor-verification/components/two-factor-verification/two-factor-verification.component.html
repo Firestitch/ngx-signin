@@ -1,0 +1,36 @@
+<form fsForm [submit]="submit" [confirm]="false">
+  <fs-2fa-verification 
+    #verification
+    [verificationMethod]="verificationMethod"
+    [resend]="resend"
+    [getVerificationMethods]="getVerificationMethods"
+    [selectVerificationMethod]="selectVerificationMethod"
+    [trustDays]="trustedDeviceExpiryDays">
+  </fs-2fa-verification>
+  <app-stacked-buttons>
+    <button 
+        mat-raised-button
+        color="primary"
+        type="submit">
+      Verify
+    </button>
+    <button
+        mat-button
+        [fs2faVerificationResend]="verification"
+        type="button">
+      Resend
+    </button>
+    <button 
+        mat-button 
+        type="button" 
+        (click)="verification.showVerificationMethods()">
+      Try other ways to verify
+    </button>
+    <button 
+      mat-button 
+      type="button" 
+      (click)="cancel()">
+      Back to signin
+    </button> 
+  </app-stacked-buttons>
+</form>

@@ -1,4 +1,5 @@
-export { FsSigninsModule } from './app/modules/signins/fs-signins.module';
+export * from './app/modules/signin';
+export * from './app/modules/signins';
 
 export { FsSigninsComponent } from './app/modules/signins/components/signins/signins.component';
 

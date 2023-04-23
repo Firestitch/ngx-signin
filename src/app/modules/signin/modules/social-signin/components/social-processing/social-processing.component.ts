@@ -1,0 +1,43 @@
+import {
+  Component, ChangeDetectionStrategy, OnInit, Input,
+} from '@angular/core';
+import { Router } from '@angular/router';
+
+import { FsMessage, MessageMode } from '@firestitch/message';
+
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+
+import { SocialSigninService } from '../../../../services';
+
+
+@Component({
+  selector: 'app-social-processing',
+  templateUrl: './social-processing.component.html',
+  styleUrls: ['./social-processing.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class SocialProcessingComponent implements OnInit {
+
+  @Input() public errorUrl;
+
+  constructor(
+    private _socialSigninService: SocialSigninService,
+    private _message: FsMessage,
+    private _router: Router,
+  ) { }
+
+  public ngOnInit(): void {
+    this._socialSigninService.processOAuthResponse()
+      .pipe(
+        catchError(() => {
+          this._message.error('There was a problem trying to signin', { mode: MessageMode.Banner });
+          this._router.navigateByUrl(this.errorUrl);
+
+          return of();
+        }),
+      )
+      .subscribe();
+  }
+
+}
