@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { FsExampleModule } from '@firestitch/example';
 import { FsMessageModule } from '@firestitch/message';
-import { FsSigninModule } from '@firestitch/signin';
+import { FsSigninsModule } from '@firestitch/signin';
 import { FsLabelModule } from '@firestitch/label';
 import { FsStoreModule } from '@firestitch/store';
 
@@ -30,7 +30,7 @@ const routes: Routes = [
   bootstrap: [ AppComponent ],
   imports: [
     BrowserModule,
-    FsSigninModule,
+    FsSigninsModule,
     BrowserAnimationsModule,
     AppMaterialModule,
     FormsModule,

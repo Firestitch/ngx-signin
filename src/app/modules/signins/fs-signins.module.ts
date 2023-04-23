@@ -35,10 +35,10 @@ import { FsSigninsComponent } from './components/signins/signins.component';
     FsSigninsComponent,
   ],
 })
-export class FsSigninModule {
-  static forRoot(): ModuleWithProviders<FsSigninModule> {
+export class FsSigninsModule {
+  static forRoot(): ModuleWithProviders<FsSigninsModule> {
     return {
-      ngModule: FsSigninModule,
+      ngModule: FsSigninsModule,
     };
   }
 }

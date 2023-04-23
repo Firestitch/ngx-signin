@@ -46,7 +46,8 @@
         *ngIf="row.device"
         [type]="row.device.type"
         [os]="row.device.osType"
-        [version]="row.device.osVersion">
+        [version]="row.device.osVersion"
+        [meta]="row.device.meta">
       </fs-device-os>
     </ng-template>
   </fs-list-column>

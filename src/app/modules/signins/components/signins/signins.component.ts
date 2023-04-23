@@ -16,9 +16,9 @@ import { IFilterConfigItem, ItemType } from '@firestitch/filter';
 import { Observable, Subject } from 'rxjs';
 import { map, switchMap, takeUntil } from 'rxjs/operators';
 
-import { ISignin } from '../../interfaces/signin';
-import { SigninStates } from '../../consts/signin-states.const';
-import { SigninVerificationCodeStates } from '../../consts/signin-verification-code-states.const';
+import { ISignin } from '../../../../interfaces/signin';
+import { SigninStates } from '../../../../consts/signin-states.const';
+import { SigninVerificationCodeStates } from '../../../../consts/signin-verification-code-states.const';
 import { FsPrompt } from '@firestitch/prompt';
 
 

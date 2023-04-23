@@ -1,6 +1,6 @@
-export { FsSigninModule } from './app/fs-signin.module';
+export { FsSigninsModule } from './app/modules/signins/fs-signins.module';
 
-export { FsSigninsComponent } from './app/components/signins/signins.component';
+export { FsSigninsComponent } from './app/modules/signins/components/signins/signins.component';
 
 export { ISignin } from './app/interfaces/signin';
 export { ISigninAccount } from './app/interfaces/signin-account';
