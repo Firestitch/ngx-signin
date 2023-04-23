@@ -80,13 +80,13 @@ import { StackedButtonsModule } from './modules/stacked-buttons';
     },
   ],
 })
-export class SigninModule {
+export class FsSigninModule {
   public static forRoot(config: {
     factory: (...args: any) => SigninConfig;
     deps?: any[];
-  }): ModuleWithProviders<SigninModule> {
+  }): ModuleWithProviders<FsSigninModule> {
     return {
-      ngModule: SigninModule,
+      ngModule: FsSigninModule,
       providers: [
         { provide: SIGNIN_CONFIG_ROOT, useFactory: config.factory, deps: config.deps },
       ],

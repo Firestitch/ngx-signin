@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { FsExampleModule } from '@firestitch/example';
 import { FsMessageModule } from '@firestitch/message';
-import { FsSigninsModule, SigninConfig, SigninModule } from '@firestitch/signin';
+import { FsSigninsModule, SigninConfig, FsSigninModule } from '@firestitch/signin';
 import { FsLabelModule } from '@firestitch/label';
 import { FsStoreModule } from '@firestitch/store';
 
@@ -47,7 +47,7 @@ import { ApiInterceptorFactory } from './interceptors';
     ToastrModule.forRoot({ preventDuplicates: true }),
     PaygroundRoutingModule,
     FsDatePickerModule.forRoot(),
-    SigninModule.forRoot({
+    FsSigninModule.forRoot({
       factory: (): SigninConfig => {
         return {
           trustedDeviceExpiryDays: 30,
