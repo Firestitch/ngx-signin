@@ -1,5 +1,5 @@
 import {
-  Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit,
+  Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, Input,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -10,14 +10,19 @@ import { throwError } from 'rxjs';
 
 import { SigninService } from '../../services';
 import { signinRequiresVerification } from '../../helpers';
+import { SigninConfig } from '../../interfaces';
 
 
 @Component({
+  selector: 'fs-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SigninComponent implements OnInit {
+
+  @Input() public config: SigninConfig;
+  @Input() public redirect: string;
 
   public mode: 'signin' | 'two-factor' | 'password-reset' = 'signin';
   public verificationMethod: IFsVerificationMethod;
@@ -32,10 +37,11 @@ export class SigninComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    const redirect = this._route.snapshot.queryParams.redirect;
+    const redirect = this.redirect ? 
+      this.redirect : this._route.snapshot.queryParams.redirect;
 
     if(redirect) {
-      this._signService.setRedirect(redirect);
+      this._signService.redirect = redirect;
     }
   }
 

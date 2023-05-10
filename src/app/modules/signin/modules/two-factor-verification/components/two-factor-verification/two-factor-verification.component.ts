@@ -1,5 +1,5 @@
 import {
-  Component, ViewChild, OnInit, ChangeDetectionStrategy, Output, EventEmitter, Input, Inject,
+  Component, ViewChild, OnInit, ChangeDetectionStrategy, Output, EventEmitter, Input,
 } from '@angular/core';
 
 import { FsFormDirective } from '@firestitch/form';
@@ -9,7 +9,6 @@ import { FsMessage } from '@firestitch/message';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { SIGNIN_CONFIG_INTERNAL } from '../../../../injectors';
 import { SigninService } from '../../../../services';
 import { VerificationData } from '../../data';
 
@@ -36,14 +35,13 @@ export class TwoFactorVerificationComponent implements OnInit {
   public trustedDeviceExpiryDays;
 
   constructor(
-    @Inject(SIGNIN_CONFIG_INTERNAL) private _config,
     private _signService: SigninService,
     private _verificationData: VerificationData,
     private _message: FsMessage,
   ) { }
 
   public ngOnInit(): void {
-    this.trustedDeviceExpiryDays = this._config.trustedDeviceExpiryDays;
+    this.trustedDeviceExpiryDays = this._signService.trustedDeviceExpiryDays;
   }
 
   public cancel(): void {

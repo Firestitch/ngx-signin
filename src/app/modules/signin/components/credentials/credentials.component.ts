@@ -8,8 +8,8 @@ import { IFsVerificationMethod } from '@firestitch/2fa';
 
 import { Subject } from 'rxjs';
 
-import { SIGNIN_CONFIG_INTERNAL } from '../../injectors';
 import { SigninConfig } from '../../interfaces';
+import { SigninService } from '../../services';
 
 
 @Component({
@@ -32,7 +32,7 @@ export class CredentialsComponent implements OnInit, OnDestroy {
   private _destroy$ = new Subject();
 
   constructor(
-    @Inject(SIGNIN_CONFIG_INTERNAL) private _config: SigninConfig,
+    private _signinService: SigninService,
     private _route: ActivatedRoute,
     private _cdRef: ChangeDetectorRef,
   ) { }
@@ -48,7 +48,7 @@ export class CredentialsComponent implements OnInit, OnDestroy {
   }
 
   public get showSocialSignins(): boolean {
-    return this._config.showSocialSignins;
+    return this._signinService.showSocialSignins;
   }
 
   public onSignedIn($event): void {
@@ -56,7 +56,7 @@ export class CredentialsComponent implements OnInit, OnDestroy {
   }
 
   public emailChange(): void {
-    this._config.emailChanged()
+    this._signinService.emailChanged()
       .subscribe(() => {
         this.mode = 'email';
         this.email = '';

@@ -1,5 +1,4 @@
 import { Injectable, Injector } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 import { FsApi } from '@firestitch/api';
 
@@ -9,7 +8,7 @@ import { switchMap } from 'rxjs/operators';
 import * as CryptoJS from 'crypto-js';
 import { formatInTimeZone } from 'date-fns-tz';
 
-import { SIGNIN_CONFIG_INTERNAL } from '../injectors';
+import { SIGNIN_CONFIG, SIGNIN_CONFIG_ROOT } from '../injectors';
 import { SigninConfig } from '../interfaces';
 
 
@@ -17,21 +16,55 @@ import { SigninConfig } from '../interfaces';
 export class SigninService {
 
   private _redirect: string;
-  private _signinConfig: SigninConfig;
+  private _signinRootConfig: SigninConfig;
+  private _signinProviderConfig: SigninConfig;
+  private _signinConfig: SigninConfig = {};
 
   constructor(
     protected _injector: Injector,
   ) {
-    this._signinConfig = this._injector.get(SIGNIN_CONFIG_INTERNAL);
-
-    const redirect = this._injector.get(ActivatedRoute).snapshot.queryParams.redirect;
-    if(redirect) {
-      this.setRedirect(redirect);
-    }
+    this._signinRootConfig = this._injector.get(SIGNIN_CONFIG_ROOT, null) || {};
+    this._signinProviderConfig = this._injector.get(SIGNIN_CONFIG, null) || {};
   }
 
-  public get signinConfig(): SigninConfig {
-    return this._signinConfig;
+  public set signinConfig(config: SigninConfig) {
+    this._signinConfig = config;
+  }
+
+  public set redirect(redirect) {
+    this._redirect = redirect;
+  }
+
+  public get trustedDeviceExpiryDays(): number { 
+    return (this.getConfig('trustedDeviceExpiryDays')) || 0;
+  }
+
+  public get showSocialSignins(): boolean { 
+    return this.getConfig('showSocialSignins') || false;
+  }
+
+  public emailChanged(): Observable<any> {
+    return (this.getConfig('emailChanged') || (() => of(null)))();
+  }
+
+  public beforeProcessSignin(response): Observable<any> {
+    return (this.getConfig('beforeProcessSignin') || (() => of(null)))(response);
+  }
+
+  public processSignin(response, redirect): Observable<any> {
+    return (this.getConfig('processSignin') || (() => of(null)))(response, redirect);
+  }
+
+  public afterProcessSignin(response): Observable<any> {
+    return (this.getConfig('afterProcessSignin') || (() => of(null)))(response);
+  }
+
+  public signinMeta(): Observable<any> {
+    return (this.getConfig('signinMeta') || (() => of(null)))();
+  }
+
+  public getConfig(name): any {
+    return this._signinConfig[name] ?? this._signinProviderConfig[name] ?? this._signinRootConfig[name];
   }
 
   public get api(): FsApi {
@@ -50,7 +83,7 @@ export class SigninService {
     { data: { handleError: false } })
       .pipe(
         switchMap((response: any) => {
-          return this.processSignin(response);
+          return this._processSignin(response);
         }),
       );
   }
@@ -65,7 +98,7 @@ export class SigninService {
     },
     { data:  { handleError: false } })
       .pipe(
-        switchMap((response: any) => this.processSignin(response)),
+        switchMap((response: any) => this._processSignin(response)),
       );
   }
 
@@ -79,25 +112,21 @@ export class SigninService {
     });
   }
 
-  public processSignin(data): Observable<any> {
+  public _processSignin(data): Observable<any> {
     return of(data)
       .pipe(
-        switchMap((response) => this._signinConfig.beforeProcessSignin(response)),
-        switchMap((response) => this._signinConfig.processSignin(response, this._redirect)),
-        switchMap((response) => this._signinConfig.afterProcessSignin(response)),
+        switchMap((response) => this.beforeProcessSignin(response)),
+        switchMap((response) => this.processSignin(response, this._redirect)),
+        switchMap((response) => this.afterProcessSignin(response)),
       );
   }
 
-  public setRedirect(redirect): void {
-    this._redirect = redirect;
-  }
-
   private _signinMeta() {
-    if(!this._signinConfig.signinMeta) {
+    if(!this.getConfig('signinMeta')) {
       return {};
     }
 
-    const meta = JSON.stringify(this._signinConfig.signinMeta());
+    const meta = JSON.stringify(this.signinMeta());
     const passcode = formatInTimeZone(new Date(), 'UTC', 'yyyy-MM-dd');
     const encrypted = CryptoJS.AES.encrypt(meta, passcode).toString();
 

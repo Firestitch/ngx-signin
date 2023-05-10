@@ -25,7 +25,7 @@ export class SocialSigninService extends SigninService {
   ): Observable<any> {
     return this.api.post('auth/facebook', { code, redirectUri }, config)
       .pipe(
-        switchMap((response: any) => this.processSignin(response)),
+        switchMap((response: any) => this._processSignin(response)),
       );
   }
 
@@ -36,7 +36,7 @@ export class SocialSigninService extends SigninService {
   ): Observable<any> {
     return this.api.post('auth/google', { code, redirectUri }, config)
       .pipe(
-        switchMap((response: any) => this.processSignin(response)),
+        switchMap((response: any) => this._processSignin(response)),
       );
   }
 

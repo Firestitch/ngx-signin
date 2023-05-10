@@ -14,12 +14,9 @@ import { FsLabelModule } from '@firestitch/label';
 import { FsCommonModule } from '@firestitch/common';
 import { Fs2faVerificationModule } from '@firestitch/2fa';
 
-// import { LogoModule } from '../logo';
-
 import { SigninService, SocialSigninService } from './services';
-import { EmailComponent, PasswordComponent, CredentialsComponent } from './components';
+import { EmailComponent, PasswordComponent, CredentialsComponent, SigninComponent, SocialComponent } from './components';
 
-import { SigninComponent, SocialComponent } from './views';
 import { TwoFactorVerificationModule } from './modules/two-factor-verification';
 import { PasswordResetModule } from './modules/password-reset';
 import { SocialSigninModule } from './modules/social-signin';
@@ -53,7 +50,6 @@ import { StackedButtonsModule } from './modules/stacked-buttons';
     FsCommonModule,
 
     SocialSigninModule,
-    //LogoModule,
     StackedButtonsModule,
     TwoFactorVerificationModule,
     PasswordResetModule,
@@ -70,14 +66,14 @@ import { StackedButtonsModule } from './modules/stacked-buttons';
   providers: [
     SigninService,
     SocialSigninService,
-    {
-      provide: SIGNIN_CONFIG_INTERNAL,
-      useFactory: signinConfig,
-      deps: [
-        [new Optional(), new Inject(SIGNIN_CONFIG)],
-        [new Optional(), new Inject(SIGNIN_CONFIG_ROOT)],
-      ],
-    },
+    // {
+    //   provide: SIGNIN_CONFIG_INTERNAL,
+    //   useFactory: signinConfig,
+    //   deps: [
+    //     [new Optional(), new Inject(SIGNIN_CONFIG)],
+    //     [new Optional(), new Inject(SIGNIN_CONFIG_ROOT)],
+    //   ],
+    // },
   ],
 })
 export class FsSigninModule {
