@@ -37,6 +37,7 @@ export class SigninComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+    this._signService.signinConfig = this.config;
     const redirect = this.redirect ? 
       this.redirect : this._route.snapshot.queryParams.redirect;
 
