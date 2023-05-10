@@ -48,19 +48,19 @@ export class SigninService {
   }
 
   public beforeProcessSignin(response): Observable<any> {
-    return (this.getConfig('beforeProcessSignin') || (() => of(null)))(response);
+    return (this.getConfig('beforeProcessSignin') || ((_response) => of(_response)))(response);
   }
 
   public processSignin(response, redirect): Observable<any> {
-    return (this.getConfig('processSignin') || (() => of(null)))(response, redirect);
+    return (this.getConfig('processSignin') || ((_response, _redirect) => of(_response)))(response, redirect);
   }
 
   public afterProcessSignin(response): Observable<any> {
-    return (this.getConfig('afterProcessSignin') || (() => of(null)))(response);
+    return (this.getConfig('afterProcessSignin') || ((_response) => of(_response)))(response);
   }
 
   public signinMeta(): Observable<any> {
-    return (this.getConfig('signinMeta') || (() => of(null)))();
+    return (this.getConfig('signinMeta') || (() => of({})))();
   }
 
   public getConfig(name): any {
