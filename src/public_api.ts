@@ -2,6 +2,7 @@ export * from './app/modules/signin';
 export * from './app/modules/signins';
 
 export { FsSigninsComponent } from './app/modules/signins/components/signins/signins.component';
+export * from './app/modules/signin/components/signin';
 
 export { ISignin } from './app/interfaces/signin';
 export { ISigninAccount } from './app/interfaces/signin-account';
