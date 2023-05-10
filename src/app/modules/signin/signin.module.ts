@@ -60,6 +60,9 @@ import { StackedButtonsModule } from './modules/stacked-buttons';
     SigninComponent,
     SocialComponent,
   ],
+  exports: [
+    SigninComponent
+  ],
   providers: [
     SigninService,
     SocialSigninService,
