@@ -9,7 +9,7 @@ const routes: Routes = [
     path: 'signin',
     component: SigninContainerComponent,
     children: [
-      { path: '', loadChildren: () => import('../../src/app/modules/signin/signin.module').then((m) => m.FsSigninModule) },
+      { path: '', loadChildren: () => import('../../src/app/modules/signin').then((m) => m.FsSigninRouteModule) },
     ]
   }
 ];

@@ -20,10 +20,8 @@ import { EmailComponent, PasswordComponent, CredentialsComponent, SigninComponen
 import { TwoFactorVerificationModule } from './modules/two-factor-verification';
 import { PasswordResetModule } from './modules/password-reset';
 import { SocialSigninModule } from './modules/social-signin';
-import { SIGNIN_CONFIG, SIGNIN_CONFIG_INTERNAL, SIGNIN_CONFIG_ROOT } from './injectors';
-import { signinConfig } from './helpers';
+import { SIGNIN_CONFIG_ROOT } from './injectors';
 import { SigninConfig } from './interfaces';
-import { SigninRoutingModule } from './signin-routing.module';
 import { StackedButtonsModule } from './modules/stacked-buttons';
 
 
@@ -54,7 +52,6 @@ import { StackedButtonsModule } from './modules/stacked-buttons';
     TwoFactorVerificationModule,
     PasswordResetModule,
     SocialSigninModule,
-    SigninRoutingModule,
   ],
   declarations: [
     CredentialsComponent,
@@ -66,14 +63,6 @@ import { StackedButtonsModule } from './modules/stacked-buttons';
   providers: [
     SigninService,
     SocialSigninService,
-    // {
-    //   provide: SIGNIN_CONFIG_INTERNAL,
-    //   useFactory: signinConfig,
-    //   deps: [
-    //     [new Optional(), new Inject(SIGNIN_CONFIG)],
-    //     [new Optional(), new Inject(SIGNIN_CONFIG_ROOT)],
-    //   ],
-    // },
   ],
 })
 export class FsSigninModule {

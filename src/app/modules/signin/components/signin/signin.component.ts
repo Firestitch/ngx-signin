@@ -23,10 +23,10 @@ export class SigninComponent implements OnInit {
 
   @Input() public config: SigninConfig;
   @Input() public redirect: string;
+  @Input() public email: string;
 
   public mode: 'signin' | 'two-factor' | 'password-reset' = 'signin';
   public verificationMethod: IFsVerificationMethod;
-  public email: string;
   public passwordResetTitle: string;
   public signinContainerComponent;
 
