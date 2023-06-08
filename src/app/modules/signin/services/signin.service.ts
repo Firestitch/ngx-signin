@@ -121,9 +121,9 @@ export class SigninService {
       );
   }
 
-  private _signinMeta() {
+  private _signinMeta(): string {
     if(!this.getConfig('signinMeta')) {
-      return {};
+      return '';
     }
 
     const meta = JSON.stringify(this.signinMeta());
