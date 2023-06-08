@@ -13,7 +13,8 @@
           [fsAutofocus]="!email"
           [fsFormFunction]="validateExists"
           [fsFormEmail]="true"
-          [validateOnSubmit]="true">
+          [validateOnSubmit]="true"
+          (keydown)="keydown($event)">
       </mat-form-field>
  
       <mat-form-field 

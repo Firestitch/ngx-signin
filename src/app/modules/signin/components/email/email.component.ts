@@ -71,4 +71,10 @@ export class EmailComponent {
     this.cleared.emit();
   }
 
+  public keydown(event: KeyboardEvent): void {
+    if(event.code === 'Tab') {
+      this.form.triggerSubmit();
+    }
+  }
+
 }
