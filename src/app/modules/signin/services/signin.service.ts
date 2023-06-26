@@ -95,6 +95,7 @@ export class SigninService {
     return this.api.post('auth/signin/verify', {
       code,
       trust: trustedDevice,
+      meta: this._signinMeta(),
     },
     { data:  { handleError: false } })
       .pipe(
