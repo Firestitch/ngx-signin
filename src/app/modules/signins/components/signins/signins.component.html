@@ -61,14 +61,6 @@
       </fs-device-browser>
     </ng-template>
   </fs-list-column>
-  <fs-list-column title="Cordova" align="center">
-    <ng-template fs-list-cell let-row="row">
-      <fs-device-cordova
-        *ngIf="row.device && row.device.cordovaVersion"
-        [version]="row.device.cordovaVersion">
-      </fs-device-cordova>
-    </ng-template>
-  </fs-list-column>
   <fs-list-column title="Location">
     <ng-template fs-list-cell let-row="row">
       <fs-ip
