@@ -8,8 +8,7 @@
             <ng-container *ngTemplateOutlet="account"></ng-container>
           </a>
           <div class="small">
-            <div *ngIf="row.email">{{ row.email }}</div>
-            <div *ngIf="row.apiKey">{{ row.apiKey }}</div> 
+            {{ row.identifier || row.emaill }}
           </div>
         </div>
       </div>
