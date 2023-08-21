@@ -2,7 +2,7 @@
   "name": "@firestitch/signin",
   "title": "Signin",
   "description": "@firestitch/signin",
-  "version": "12.1.21",
+  "version": "12.1.22",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-signin"
@@ -43,7 +43,7 @@
     "@angular/router": "^12.2.15",
     "@compodoc/compodoc": "^1.1.11",
     "@cypress/schematic": "^1.6.0",
-    "@firestitch/api": "^12.2.8",
+    "@firestitch/api": "^12.3.10",
     "@firestitch/2fa": "^12.11.1",
     "@firestitch/password-reset": "^12.0.3",
     "@firestitch/social-signin": "^12.0.12",

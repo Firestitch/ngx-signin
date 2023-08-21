@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { FsApi } from '@firestitch/api';
+import { FsApi, RequestConfig } from '@firestitch/api';
 
 import { Observable } from 'rxjs';
 
@@ -13,15 +13,15 @@ export class PasswordData {
   ) {
   }
 
-  public reset(data, options?): Observable<any> {
+  public reset(data, options?: RequestConfig): Observable<any> {
     return this._api.post('password/reset', data, options);
   }
 
-  public request(data, options?): Observable<any> {
+  public request(data, options?: RequestConfig): Observable<any> {
     return this._api.post('password/request', data, options);
   }
 
-  public verify(data, options?): Observable<any> {
+  public verify(data, options?: RequestConfig): Observable<any> {
     return this._api.post('password/verify', data, options);
   }
 
