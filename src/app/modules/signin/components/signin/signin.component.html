@@ -1,7 +1,9 @@
 
 <ng-container [ngSwitch]="mode">
   <ng-container *ngSwitchCase="'signin'">
-    <div class="title">Sign In</div>
+    <ng-container *ngIf="signinTitle">
+      <div class="title">{{signinTitle}}</div>
+    </ng-container>
     <app-credentials
       [email]="email"
       (verificationRequired)="verificationRequired($event)"

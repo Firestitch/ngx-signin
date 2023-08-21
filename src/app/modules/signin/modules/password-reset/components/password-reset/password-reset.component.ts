@@ -39,7 +39,7 @@ export class PasswordResetComponent {
 
   public verifyCode = (code: string): Observable<any> => {
     return this._passwordData.verify({ code }, {
-      data:  { handleError: false },
+      data: { handleError: false },
     });
   };
 

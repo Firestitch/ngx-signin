@@ -18,7 +18,9 @@ export class SigninService {
   private _redirect: string;
   private _signinRootConfig: SigninConfig;
   private _signinProviderConfig: SigninConfig;
-  private _signinConfig: SigninConfig = {};
+  private _signinConfig: SigninConfig = {
+    signinTitle: 'Sign In',
+  };
 
   constructor(
     protected _injector: Injector,
@@ -29,6 +31,10 @@ export class SigninService {
 
   public set signinConfig(config: SigninConfig) {
     this._signinConfig = config;
+  }
+
+  public get signinConfig() {
+    return this._signinConfig;
   }
 
   public set redirect(redirect) {

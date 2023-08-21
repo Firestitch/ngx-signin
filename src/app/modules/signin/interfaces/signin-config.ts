@@ -9,4 +9,5 @@ export interface SigninConfig {
   showSocialSignins?: boolean;
   trustedDeviceExpiryDays?: number;
   signinMeta?: () => any;
+  signinTitle?: string
 }

@@ -28,6 +28,7 @@ export class SigninComponent implements OnInit {
   public mode: 'signin' | 'two-factor' | 'password-reset' = 'signin';
   public verificationMethod: IFsVerificationMethod;
   public passwordResetTitle: string;
+  public signinTitle;
   public signinContainerComponent;
 
   constructor(
@@ -37,9 +38,12 @@ export class SigninComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    if(this.config) {
-      this._signService.signinConfig = this.config;
+    this._signService.signinConfig = {
+      ...this._signService.signinConfig,
+      ...this.config,
     }
+
+    this.signinTitle = this._signService.signinConfig.signinTitle;
 
     const redirect = this.redirect ? 
       this.redirect : this._route.snapshot.queryParams.redirect;
