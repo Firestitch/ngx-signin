@@ -1,6 +1,6 @@
 import {
   Component, ViewChild, ElementRef, ChangeDetectionStrategy,
-  Input, Output, EventEmitter,
+  Input, Output, EventEmitter, AfterContentInit,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
@@ -20,12 +20,9 @@ import { SigninService } from '../../services';
   styleUrls: ['./password.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PasswordComponent {
-
-  @ViewChild('formFields', { read: ElementRef, static: false })
-  public formFields: ElementRef;
-
-  @ViewChild('passwordInput', { read: ElementRef, static: false })
+export class PasswordComponent implements AfterContentInit {
+  
+  @ViewChild('passwordInput', { read: ElementRef, static: true })
   public passwordInput: ElementRef;
 
   @ViewChild(FsFormDirective)
@@ -45,6 +42,12 @@ export class PasswordComponent {
   constructor(
     private _signService: SigninService,
   ) { }
+  
+  public ngAfterContentInit(): void {
+   if(!this.password) {
+    this.passwordInput.nativeElement.focus();
+   }
+  }
 
   public validatePassword = (control: FormControl): Observable<any> => {
     if (this.passwordError) {
