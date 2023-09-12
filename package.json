@@ -2,7 +2,7 @@
   "name": "@firestitch/signin",
   "title": "Signin",
   "description": "@firestitch/signin",
-  "version": "12.1.23",
+  "version": "12.1.24",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-signin"
@@ -26,7 +26,6 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.14",
-    "@angular-devkit/build-ng-packagr": "~0.1002.0",
     "@angular/animations": "^12.2.15",
     "@angular/cdk": "^12.2.13",
     "@angular/cli": "^12.2.14",
@@ -36,7 +35,6 @@
     "@angular/core": "^12.2.15",
     "@angular/flex-layout": "^12.0.0-beta.35",
     "@angular/forms": "^12.2.15",
-    "@angular/http": "^7.2.16",
     "@angular/material": "^12.2.13",
     "@angular/platform-browser": "^12.2.15",
     "@angular/platform-browser-dynamic": "^12.2.15",
@@ -44,7 +42,7 @@
     "@compodoc/compodoc": "^1.1.11",
     "@cypress/schematic": "^1.6.0",
     "@firestitch/api": "^12.3.10",
-    "@firestitch/2fa": "^12.11.1",
+    "@firestitch/2fa": "^12.11.6",
     "@firestitch/password-reset": "^12.0.3",
     "@firestitch/social-signin": "^12.0.12",
     "@firestitch/password": "^12.4.0",
@@ -113,7 +111,6 @@
     "rxjs": "^6.5.3",
     "start-server-and-test": "^1.14.0",
     "tslint": "~6.1.0",
-    "tsmodels": "^0.4.7",
     "typescript": "4.3.5",
     "zone.js": "~0.11.4"
   },

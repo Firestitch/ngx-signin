@@ -56,6 +56,7 @@ import { ApiInterceptorFactory } from './interceptors';
           signinMeta: () => ({
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
           }),
+          verificationCodeLength: 4,
           //signinContainerTemplate: () => (SigninContainerComponent)
         };
       },

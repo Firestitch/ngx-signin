@@ -33,6 +33,7 @@ export class TwoFactorVerificationComponent implements OnInit {
   @Output() public signedIn = new EventEmitter<any>();
 
   public trustedDeviceExpiryDays;
+  public verificationCodeLength;
 
   constructor(
     private _signService: SigninService,
@@ -42,6 +43,7 @@ export class TwoFactorVerificationComponent implements OnInit {
 
   public ngOnInit(): void {
     this.trustedDeviceExpiryDays = this._signService.trustedDeviceExpiryDays;
+    this.verificationCodeLength = this._signService.verificationCodeLength;
   }
 
   public cancel(): void {

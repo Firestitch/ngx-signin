@@ -1,5 +1,5 @@
-import { Component, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs';
+
 
 export interface SigninConfig {
   emailChanged?: () => Observable<any>;
@@ -9,5 +9,6 @@ export interface SigninConfig {
   showSocialSignins?: boolean;
   trustedDeviceExpiryDays?: number;
   signinMeta?: () => any;
-  signinTitle?: string
+  signinTitle?: string;
+  verificationCodeLength?: number;
 }

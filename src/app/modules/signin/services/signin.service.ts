@@ -38,6 +38,10 @@ export class SigninService {
     return this._signinConfig;
   }
 
+  public get verificationCodeLength() {
+    return this.getConfig('verificationCodeLength');
+  }
+
   public set redirect(redirect) {
     this._redirect = redirect;
   }
