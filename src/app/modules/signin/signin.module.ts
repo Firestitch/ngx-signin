@@ -43,7 +43,6 @@ import { StackedButtonsModule } from './modules/stacked-buttons';
     FsFormModule,
     Fs2faVerificationModule,
     FsPasswordModule,
-    FsFormModule,
     FsLabelModule,
     FsCommonModule,
 
