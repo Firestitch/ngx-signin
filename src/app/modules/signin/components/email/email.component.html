@@ -1,10 +1,10 @@
 <form fsForm [submit]="submit" [confirm]="false">
   <div class="form-fields">
     <mat-form-field class="full-width form-field-multiline-subscript">
+      <mat-label>Email</mat-label>
       <input
         #emailInput
         matInput
-        placeholder="Email"
         [(ngModel)]="email"
         name="email"
         autocomplete="email"
@@ -17,9 +17,9 @@
     </mat-form-field>
 
     <mat-form-field class="password">
+      <mat-label>Password</mat-label>
       <input
         matInput
-        placeholder="Password"
         type="password"
         [(ngModel)]="password"
         autocomplete="password"
@@ -30,7 +30,7 @@
 
   <app-stacked-buttons>
     <button        
-        mat-raised-button
+        mat-flat-button
         type="submit"
         name="continue"
         color="primary">
