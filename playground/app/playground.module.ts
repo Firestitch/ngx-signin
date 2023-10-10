@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FsExampleModule } from '@firestitch/example';
 import { FsLabelModule } from '@firestitch/label';
-import { FsMessageModule } from '@firestitch/message';
+import { FsMessage, FsMessageModule } from '@firestitch/message';
 import { FsSigninModule, FsSigninsModule, SigninConfig } from '@firestitch/signin';
 import { FsStoreModule } from '@firestitch/store';
 
@@ -15,6 +15,7 @@ import { FsDatePickerModule } from '@firestitch/datepicker';
 import { FsFilterModule } from '@firestitch/filter';
 import { FS_SOCIAL_SIGNIN_CONFIG } from '@firestitch/social-signin';
 import { of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { AppComponent } from './app.component';
 import {
   ExamplesComponent, SigninContainerComponent
@@ -43,18 +44,21 @@ import { PaygroundRoutingModule } from './playground-routing.module';
     PaygroundRoutingModule,
     FsDatePickerModule.forRoot(),
     FsSigninModule.forRoot({
-      factory: (): SigninConfig => {
+      factory: (message: FsMessage): SigninConfig => {
         return {
           trustedDeviceExpiryDays: 30,
           beforeProcessSignin: (response) => of(response),
-          processSignin: (response, redirect) => of(response, redirect),
+          processSignin: (response, redirect) => of(response, redirect)
+            .pipe(
+              tap(() => message.success('Successfully signed in'))
+            ),
           signinMeta: () => ({
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
           }),
           verificationCodeLength: 4,
-          //signinContainerTemplate: () => (SigninContainerComponent)
         };
       },
+      deps: [FsMessage]
     }),
   ],
   providers: [

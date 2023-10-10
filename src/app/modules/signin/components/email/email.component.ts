@@ -1,15 +1,21 @@
 import {
-  Component, ViewChild, ElementRef, ChangeDetectionStrategy,
-  ChangeDetectorRef, Input, Output, EventEmitter,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input, Output,
+  ViewChild,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { FsFormDirective } from '@firestitch/form';
 import { IFsVerificationMethod } from '@firestitch/2fa';
+import { FsFormDirective } from '@firestitch/form';
 
 import { Observable, of, throwError } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 
+import { MatInput } from '@angular/material/input';
 import { SigninService } from '../../services';
 
 
@@ -24,8 +30,8 @@ export class EmailComponent {
   @ViewChild('formFields', { read: ElementRef, static: false })
   public formFields: ElementRef;
 
-  @ViewChild('passwordInput', { read: ElementRef, static: false })
-  public passwordInput: ElementRef;
+  @ViewChild('passwordInput', { read: MatInput })
+  public passwordInput: MatInput;
 
   @ViewChild(FsFormDirective)
   public form: FsFormDirective;
@@ -54,6 +60,7 @@ export class EmailComponent {
           switchMap((exists) => {
             return exists ? of(true) : throwError('Could not find your account');
           }),
+          tap(() => this.passwordInput.focus()),
         );
     }
 
@@ -72,7 +79,7 @@ export class EmailComponent {
   }
 
   public keydown(event: KeyboardEvent): void {
-    if(event.code === 'Tab') {
+    if (event.code === 'Tab') {
       this.form.triggerSubmit();
     }
   }
