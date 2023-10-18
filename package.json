@@ -67,6 +67,7 @@
     "@firestitch/iframe": "^12.0.7",
     "@firestitch/ip": "^12.1.2",
     "@firestitch/label": "^12.0.2",
+    "@firestitch/lint": "^12.0.18",
     "@firestitch/list": "^12.14.1",
     "@firestitch/mask": "^12.3.5",
     "@firestitch/menu": "^12.2.2",
