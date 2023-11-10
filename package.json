@@ -26,7 +26,7 @@
     "npm-update": "npx npm-check-updates -u \"/@firestitch/\""
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.2.14",
+    "@angular-devkit/build-angular": "~16.2.5",
     "@angular/animations": "^12.2.15",
     "@angular/cdk": "^12.2.13",
     "@angular/cli": "^12.2.14",
@@ -51,7 +51,7 @@
     "@firestitch/clear": "^12.2.1",
     "@firestitch/code-input": "^12.0.2",
     "@firestitch/common": "^12.5.4",
-    "@firestitch/component-tools": "^12.0.17",
+    "@firestitch/component-tools": "^13.0.0",
     "@firestitch/core": "^12.0.3",
     "@firestitch/country": "^12.0.0",
     "@firestitch/date": "^12.4.4",
