@@ -6,4 +6,5 @@ export const SigninStates = [
   { name: 'Reset', value: SigninState.Reset },
   { name: 'Verification Requested', value: SigninState.VerificationRequested },
   { name: 'Verification Failed', value: SigninState.VerificationFailed },
+  { name: 'Password Reset', value: SigninState.PasswordReset },
 ];
