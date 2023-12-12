@@ -1,11 +1,16 @@
 import {
-  Component, ViewChild, ElementRef, ChangeDetectionStrategy,
-  Input, Output, EventEmitter, AfterContentInit,
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input, Output,
+  ViewChild,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { FsFormDirective } from '@firestitch/form';
 import { IFsVerificationMethod } from '@firestitch/2fa';
+import { FsAutofocusDirective } from '@firestitch/common';
+import { FsFormDirective } from '@firestitch/form';
 
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -21,9 +26,9 @@ import { SigninService } from '../../services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PasswordComponent implements AfterContentInit {
-  
-  @ViewChild('passwordInput', { read: ElementRef, static: true })
-  public passwordInput: ElementRef;
+
+  @ViewChild(FsAutofocusDirective)
+  public passwordInput: FsAutofocusDirective;
 
   @ViewChild(FsFormDirective)
   public form: FsFormDirective;
@@ -42,11 +47,11 @@ export class PasswordComponent implements AfterContentInit {
   constructor(
     private _signService: SigninService,
   ) { }
-  
+
   public ngAfterContentInit(): void {
-   if(!this.password) {
-    this.passwordInput.nativeElement.focus();
-   }
+    if (!this.password) {
+      this.passwordInput.focus();
+    }
   }
 
   public validatePassword = (control: FormControl): Observable<any> => {
@@ -75,7 +80,7 @@ export class PasswordComponent implements AfterContentInit {
 
           this.passwordError = response.error.message;
           this.form.ngForm.controls.password.updateValueAndValidity();
-          this.passwordInput.nativeElement.focus();
+          this.passwordInput.focus();
 
           return of(true);
         }),
