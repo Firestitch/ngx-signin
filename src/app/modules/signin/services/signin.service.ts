@@ -74,8 +74,8 @@ export class SigninService {
     return (this.getConfig('signinMeta') || (() => of({})))();
   }
 
-  public getConfig(name): any {
-    return this._signinConfig[name] ?? this._signinProviderConfig[name] ?? this._signinRootConfig[name];
+  public getConfig(name, _default = null): any {
+    return this._signinConfig[name] || this._signinProviderConfig[name] || this._signinRootConfig[name] || _default;
   }
 
   public get api(): FsApi {
@@ -86,7 +86,7 @@ export class SigninService {
     email: string,
     password: string,
   ): Observable<any> {
-    return this.api.post('auth/signin', {
+    return this.api.post(this.getConfig('signinUrl', 'auth/signin'), {
       email,
       password,
       meta: this._signinMeta(),
@@ -106,7 +106,7 @@ export class SigninService {
     code: any,
     trustedDevice: boolean,
   ): Observable<void> {
-    return this.api.post('auth/signin/verify', {
+    return this.api.post(this.getConfig('signinVerifyUrl', 'auth/signin/verify'), {
       code,
       trust: trustedDevice,
       meta: this._signinMeta(),
@@ -123,7 +123,7 @@ export class SigninService {
   public signinExists(
     email: any,
   ): Observable<boolean> {
-    return this.api.post('auth/signin/exists', {
+    return this.api.post(this.getConfig('signinExistsUrl', 'auth/signin/exists'), {
       email,
     }, {
       key: 'exists',

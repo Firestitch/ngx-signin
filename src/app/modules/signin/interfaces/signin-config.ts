@@ -11,4 +11,7 @@ export interface SigninConfig {
   signinMeta?: () => any;
   signinTitle?: string;
   verificationCodeLength?: number;
+  signinUrl?: string;
+  signinVerifyUrl?: string;
+  signinExistsUrl?: string;
 }
