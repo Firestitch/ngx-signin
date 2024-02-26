@@ -2,7 +2,7 @@
 <ng-container [ngSwitch]="mode">
   <ng-container *ngSwitchCase="'signin'">
     <ng-container *ngIf="signinTitle">
-      <div class="title">{{signinTitle}}</div>
+      <h1>{{signinTitle}}</h1>
     </ng-container>
     <app-credentials
       [email]="email"
@@ -11,14 +11,14 @@
     </app-credentials>
   </ng-container>
   <ng-container *ngSwitchCase="'two-factor'">
-    <div class="title">2-Step Verification</div>
+    <h1>2-Step Verification</h1>
     <app-two-factor-verification
       [verificationMethod]="verificationMethod"
       (cancelled)="signinMode()">
     </app-two-factor-verification>
   </ng-container>
   <ng-container *ngSwitchCase="'password-reset'">
-    <div class="title">{{passwordResetTitle}}</div>
+    <h1>{{passwordResetTitle}}</h1>
     <app-password-reset
       [email]="email"
       (completed)="passwordResetCompleted($event)"
