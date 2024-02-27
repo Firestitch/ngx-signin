@@ -20,7 +20,7 @@ export class SigninService {
   private _signinRootConfig: SigninConfig;
   private _signinProviderConfig: SigninConfig;
   private _signinConfig: SigninConfig = {
-    signinTitle: 'Sign In',
+    signinTitle: 'Sign in',
   };
 
   constructor(
