@@ -16,7 +16,7 @@ export class ApiInterceptor extends RequestInterceptor {
   }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const url = `https://specify.dev.firestitch.com/api/`.concat(req.url);
+    const url = `https://specify.firestitch.dev/api/`.concat(req.url);
 
     return next.handle(req.clone({ url }));
   }

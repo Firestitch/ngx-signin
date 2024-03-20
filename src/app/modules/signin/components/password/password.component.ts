@@ -50,7 +50,9 @@ export class PasswordComponent implements AfterContentInit {
 
   public ngAfterContentInit(): void {
     if (!this.password) {
-      this.passwordInput.focus();
+      setTimeout(() => {
+        this.passwordInput.focus();
+      });
     }
   }
 
