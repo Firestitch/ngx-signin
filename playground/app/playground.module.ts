@@ -1,24 +1,26 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { FsExampleModule } from '@firestitch/example';
-import { FsLabelModule } from '@firestitch/label';
-import { FsMessage, FsMessageModule } from '@firestitch/message';
-import { FsSigninModule, FsSigninsModule, SigninConfig } from '@firestitch/signin';
-import { FsStoreModule } from '@firestitch/store';
 
 
 import { FS_API_REQUEST_INTERCEPTOR, FsApiModule } from '@firestitch/api';
 import { FsDatePickerModule } from '@firestitch/datepicker';
+import { FsExampleModule } from '@firestitch/example';
 import { FsFilterModule } from '@firestitch/filter';
+import { FsLabelModule } from '@firestitch/label';
+import { FsMessage, FsMessageModule } from '@firestitch/message';
+import { FsSigninModule, FsSigninsModule, SigninConfig } from '@firestitch/signin';
 import { FS_SOCIAL_SIGNIN_CONFIG } from '@firestitch/social-signin';
+import { FsStoreModule } from '@firestitch/store';
+
 import { of } from 'rxjs';
 import { tap } from 'rxjs/operators';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppComponent } from './app.component';
 import {
-  ExamplesComponent, SigninContainerComponent
+  ExamplesComponent, SigninContainerComponent,
 } from './components';
 import { SigninsComponent } from './components/signins';
 import { ApiInterceptorFactory } from './interceptors';
@@ -50,7 +52,7 @@ import { PaygroundRoutingModule } from './playground-routing.module';
           beforeProcessSignin: (response) => of(response),
           processSignin: (response, redirect) => of(response, redirect)
             .pipe(
-              tap(() => message.success('Successfully signed in'))
+              tap(() => message.success('Successfully signed in')),
             ),
           signinMeta: () => ({
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -58,7 +60,7 @@ import { PaygroundRoutingModule } from './playground-routing.module';
           verificationCodeLength: 4,
         };
       },
-      deps: [FsMessage]
+      deps: [FsMessage],
     }),
   ],
   providers: [

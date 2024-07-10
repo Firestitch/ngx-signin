@@ -1,9 +1,14 @@
 import {
-  Component, ViewChild, OnInit, ChangeDetectionStrategy, Output, EventEmitter, Input,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter, Input,
+  OnInit,
+  Output,
+  ViewChild,
 } from '@angular/core';
 
-import { FsFormDirective } from '@firestitch/form';
 import { Fs2faVerificationComponent, IFsVerificationMethod } from '@firestitch/2fa';
+import { FsFormDirective } from '@firestitch/form';
 import { FsMessage } from '@firestitch/message';
 
 import { Observable, throwError } from 'rxjs';
@@ -48,6 +53,10 @@ export class TwoFactorVerificationComponent implements OnInit {
 
   public cancel(): void {
     this.cancelled.emit();
+  }
+
+  public codeCompleted(): void {
+    this.form.triggerSubmit();
   }
 
   public submit = (): Observable<any> => {

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { ExamplesComponent, SigninContainerComponent } from './components';
 
@@ -10,8 +10,8 @@ const routes: Routes = [
     component: SigninContainerComponent,
     children: [
       { path: '', loadChildren: () => import('../../src/app/modules/signin').then((m) => m.FsSigninRouteModule) },
-    ]
-  }
+    ],
+  },
 ];
 
 

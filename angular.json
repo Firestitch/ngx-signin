@@ -36,7 +36,7 @@
                 "glob": "**/*", 
                 "input": "./node_modules/@firestitch/device/assets", 
                 "output": "./assets/@firestitch/device" 
-              }          
+              }        
             ],
             "styles": [
               "playground/styles.scss"
@@ -47,7 +47,12 @@
               "qrcode",
               "date-fns-tz",
               "crypto-js"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules/"
+              ]
+            }
           },
           "configurations": {
             "production": {

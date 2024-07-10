@@ -30,7 +30,7 @@ export class PasswordComponent implements AfterContentInit {
   @ViewChild(FsAutofocusDirective)
   public passwordInput: FsAutofocusDirective;
 
-  @ViewChild(FsFormDirective)
+  @ViewChild(FsFormDirective, { static: true })
   public form: FsFormDirective;
 
   @Input() public email;
@@ -42,35 +42,21 @@ export class PasswordComponent implements AfterContentInit {
   @Output() public emailChange = new EventEmitter<any>();
   @Output() public passwordReset = new EventEmitter<any>();
 
-  public passwordError;
-
   constructor(
     private _signService: SigninService,
   ) { }
 
   public ngAfterContentInit(): void {
-    if (!this.password) {
+    if (this.email && this.password) {
       setTimeout(() => {
-        this.passwordInput.focus();
+        this.form.triggerSubmit();
       });
     }
   }
 
   public validatePassword = (control: FormControl): Observable<any> => {
-    if (this.passwordError) {
-      return throwError(this.passwordError);
-    }
-
-    return of(true);
-  };
-
-  public submit = (): Observable<any> => {
-    return this.signin(this.email, this.password);
-  };
-
-  public signin(email, password): Observable<any> {
     return this._signService
-      .signin(email, password)
+      .signin(this.email, this.password)
       .pipe(
         tap((response) => this.signedIn.emit(response)),
         catchError((response) => {
@@ -80,22 +66,19 @@ export class PasswordComponent implements AfterContentInit {
             return of(true);
           }
 
-          this.passwordError = response.error.message;
-          this.form.ngForm.controls.password.updateValueAndValidity();
           this.passwordInput.focus();
 
-          return of(true);
+          return throwError(response.error.message);
         }),
       );
-  }
+  };
+
+  public submit = (): Observable<any> => {
+    return of(true);
+  };
 
   public changeEmail(): void {
     this.emailChange.emit();
-  }
-
-  public clearPassword(): void {
-    this.passwordError = null;
-    this.form.ngForm.controls.password.updateValueAndValidity();
   }
 
 }

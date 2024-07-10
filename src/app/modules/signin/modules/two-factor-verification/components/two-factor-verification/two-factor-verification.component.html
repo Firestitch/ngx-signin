@@ -6,6 +6,7 @@
     [getVerificationMethods]="getVerificationMethods"
     [selectVerificationMethod]="selectVerificationMethod"
     [codeLength]="verificationCodeLength"
+    (codeCompleted)="codeCompleted()"
     [trustDays]="trustedDeviceExpiryDays">
   </fs-2fa-verification>
   <app-stacked-buttons>

@@ -1,31 +1,31 @@
 import {
-  Component,
-  ViewChild,
-  Input,
   ChangeDetectionStrategy,
-  OnInit,
-  OnDestroy,
-  Output,
+  Component,
   EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
 } from '@angular/core';
 
-import { FsListComponent, FsListConfig } from '@firestitch/list';
 import { index } from '@firestitch/common';
 import { IFilterConfigItem, ItemType } from '@firestitch/filter';
+import { FsListComponent, FsListConfig } from '@firestitch/list';
+import { FsPrompt } from '@firestitch/prompt';
 
 import { Observable, Subject } from 'rxjs';
 import { map, switchMap, takeUntil } from 'rxjs/operators';
 
-import { ISignin } from '../../../../interfaces/signin';
 import { SigninStates } from '../../../../consts/signin-states.const';
 import { SigninVerificationCodeStates } from '../../../../consts/signin-verification-code-states.const';
-import { FsPrompt } from '@firestitch/prompt';
+import { ISignin } from '../../../../interfaces/signin';
 
 
 @Component({
   selector: 'fs-signins',
   templateUrl: './signins.component.html',
-  styleUrls: [ './signins.component.scss' ],
+  styleUrls: ['./signins.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FsSigninsComponent implements OnInit, OnDestroy {
@@ -57,7 +57,7 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
 
   private _destroy$ = new Subject();
 
-  public constructor(
+  constructor(
     private _prompt: FsPrompt,
   ) {}
 
@@ -95,24 +95,24 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
         ...(this.appendFilters || []),
       ],   
       rowActions: this.signinSignOut ? 
-      [
-        {
-          label: 'Sign Out',
-          click: (signout) => {
-            this._prompt.confirm({
-              title: 'Confirm',
-              template: 'Are you sure you would like to sign out this sign in?',
-            })
-            .pipe(
-              switchMap(() => this.signinSignOut(signout)),
-              takeUntil(this._destroy$),
-            )
-            .subscribe(() => {
-              this.listComponent.reload();
-            });
-          }
-        }
-      ] : [],  
+        [
+          {
+            label: 'Sign Out',
+            click: (signout) => {
+              this._prompt.confirm({
+                title: 'Confirm',
+                template: 'Are you sure you would like to sign out this sign in?',
+              })
+                .pipe(
+                  switchMap(() => this.signinSignOut(signout)),
+                  takeUntil(this._destroy$),
+                )
+                .subscribe(() => {
+                  this.listComponent.reload();
+                });
+            },
+          },
+        ] : [],  
       fetch: (query) => {
         return this.signinsFetch(query)
           .pipe(

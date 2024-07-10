@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
+import { DeviceBrowser, DeviceOs, DeviceType } from '@firestitch/device';
 import { ISignin, SigninState } from '@firestitch/signin';
-import { DeviceType, DeviceBrowser, DeviceOs } from '@firestitch/device';
 
 import { of } from 'rxjs';
+
 import { SigninVerificationCodeState } from 'src/app/enums/signin-verification-code-state.enum';
 
 
 @Component({
   selector: 'app-signins',
   templateUrl: './signins.component.html',
-  styleUrls: ['./signins.component.scss']
+  styleUrls: ['./signins.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SigninsComponent implements OnInit {
 
   public signins: ISignin[] = null;
-
-  constructor() { }
 
   public ngOnInit(): void {
     this.signins = [
@@ -41,12 +41,12 @@ export class SigninsComponent implements OnInit {
           id: Math.random(),
           country: 'CA',
           ip: '124.22.52.112',
-          region: 'Ontario'
+          region: 'Ontario',
         },
         createDate: new Date(),
         state: SigninState.Failure,
         email: 'admin@admin.com',
-        message: 'The password does not match the account\'s password.'
+        message: 'The password does not match the account\'s password.',
       },
       {
         id: Math.random(),
@@ -63,7 +63,7 @@ export class SigninsComponent implements OnInit {
           id: Math.random(),
           country: 'CA',
           ip: '124.22.52.112',
-          region: 'Ontario'
+          region: 'Ontario',
         },
         email: 'admin@admin.com',
         createDate: new Date(),
@@ -72,8 +72,8 @@ export class SigninsComponent implements OnInit {
           id: 31233,
           createDate: new Date(),
           state: SigninVerificationCodeState.Used,
-          attempts: 2
-        }
+          attempts: 2,
+        },
       },
     ];
   }
@@ -86,6 +86,6 @@ export class SigninsComponent implements OnInit {
     return of({
       data: this.signins,
     });
-  }
+  };
 
 }

@@ -1,6 +1,12 @@
 import {
-  Component, OnInit, ChangeDetectionStrategy,
-  Input, Output, EventEmitter, Inject, OnDestroy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,7 +14,6 @@ import { IFsVerificationMethod } from '@firestitch/2fa';
 
 import { Subject } from 'rxjs';
 
-import { SigninConfig } from '../../interfaces';
 import { SigninService } from '../../services';
 
 
@@ -42,7 +47,7 @@ export class CredentialsComponent implements OnInit, OnDestroy {
       this.email = this._route.snapshot.queryParams.email;
     }
 
-    if (!!this.email) {
+    if (this.email) {
       this.mode = 'password';
     }
   }

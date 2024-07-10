@@ -6,11 +6,13 @@ import {
   Output,
 } from '@angular/core';
 
+import { DisplayApiError } from '@firestitch/api';
+
 import { Observable } from 'rxjs';
 
-import { PasswordData } from '../../data';
 import { HttpContext } from '@angular/common/http';
-import { DisplayApiError } from '@firestitch/api';
+
+import { PasswordData } from '../../data';
 
 
 @Component({
@@ -41,7 +43,6 @@ export class PasswordResetComponent {
 
   public verifyCode = (code: string): Observable<any> => {
     return this._passwordData.verify({ code }, {
-      data: { handleError: false },
       context: new HttpContext().set(DisplayApiError, false),
     });
   };
