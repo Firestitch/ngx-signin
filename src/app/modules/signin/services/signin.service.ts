@@ -5,12 +5,12 @@ import { DisplayApiError, FsApi } from '@firestitch/api';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
+import { HttpContext } from '@angular/common/http';
 import * as CryptoJS from 'crypto-js';
 import { formatInTimeZone } from 'date-fns-tz';
 
 import { SIGNIN_CONFIG, SIGNIN_CONFIG_ROOT } from '../injectors';
 import { SigninConfig } from '../interfaces';
-import { HttpContext } from '@angular/common/http';
 
 
 @Injectable()
@@ -86,16 +86,18 @@ export class SigninService {
     email: string,
     password: string,
   ): Observable<any> {
-    return this.api.post(this.getConfig('signinUrl', 'auth/signin'), {
-      email,
-      password,
-      meta: this._signinMeta(),
-    },
-    { 
-      data: { handleError: false },
-      context: new HttpContext().set(DisplayApiError, false),
-    })
+    return this._signinMeta()
       .pipe(
+        switchMap((meta) => this.api.post(this.getConfig('signinUrl', 'auth/signin'), {
+          email,
+          password,
+          meta,
+        },
+        { 
+          data: { handleError: false },
+          context: new HttpContext().set(DisplayApiError, false),
+        }),
+        ),
         switchMap((response: any) => {
           return this._processSignin(response);
         }),
@@ -106,16 +108,19 @@ export class SigninService {
     code: any,
     trustedDevice: boolean,
   ): Observable<void> {
-    return this.api.post(this.getConfig('signinVerifyUrl', 'auth/signin/verify'), {
-      code,
-      trust: trustedDevice,
-      meta: this._signinMeta(),
-    },
-    { 
-      data: { handleError: false },
-      context: new HttpContext().set(DisplayApiError, false),
-    })
+    return this._signinMeta()
       .pipe(
+        switchMap((meta) =>
+          this.api.post(this.getConfig('signinVerifyUrl', 'auth/signin/verify'), {
+            code,
+            trust: trustedDevice,
+            meta,
+          },
+          { 
+            data: { handleError: false },
+            context: new HttpContext().set(DisplayApiError, false),
+          }),
+        ),  
         switchMap((response: any) => this._processSignin(response)),
       );
   }
@@ -139,16 +144,16 @@ export class SigninService {
       );
   }
 
-  private _signinMeta(): string {
+  private _signinMeta(): Observable<string> {
     if(!this.getConfig('signinMeta')) {
-      return '';
+      return of('');
     }
 
     const meta = JSON.stringify(this.signinMeta());
     const passcode = formatInTimeZone(new Date(), 'UTC', 'yyyy-MM-dd');
     const encrypted = CryptoJS.AES.encrypt(meta, passcode).toString();
 
-    return encrypted;
+    return of(encrypted);
   }
 
 }

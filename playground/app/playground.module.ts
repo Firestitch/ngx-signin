@@ -54,7 +54,7 @@ import { PaygroundRoutingModule } from './playground-routing.module';
             .pipe(
               tap(() => message.success('Successfully signed in')),
             ),
-          signinMeta: () => ({
+          signinMeta: () => of({
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
           }),
           verificationCodeLength: 4,

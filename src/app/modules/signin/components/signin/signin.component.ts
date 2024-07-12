@@ -1,16 +1,19 @@
 import {
-  Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, Input,
+  ChangeDetectionStrategy, ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { IFsVerificationMethod } from '@firestitch/2fa';
 
-import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
-import { SigninService } from '../../services';
 import { signinRequiresVerification } from '../../helpers';
 import { SigninConfig } from '../../interfaces';
+import { SigninService } from '../../services';
 
 
 @Component({
@@ -41,7 +44,7 @@ export class SigninComponent implements OnInit {
     this._signService.signinConfig = {
       ...this._signService.signinConfig,
       ...this.config,
-    }
+    };
 
     this.signinTitle = this._signService.signinConfig.signinTitle;
 

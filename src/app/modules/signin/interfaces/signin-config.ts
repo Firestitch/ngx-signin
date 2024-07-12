@@ -8,7 +8,7 @@ export interface SigninConfig {
   afterProcessSignin?: (response) => Observable<any>;
   showSocialSignins?: boolean;
   trustedDeviceExpiryDays?: number;
-  signinMeta?: () => any;
+  signinMeta?: () => Observable<{[key: string]: any}>;
   signinTitle?: string;
   verificationCodeLength?: number;
   signinUrl?: string;
