@@ -3,7 +3,7 @@ import { Injectable, Injector } from '@angular/core';
 import { DisplayApiError, FsApi } from '@firestitch/api';
 
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 import { HttpContext } from '@angular/common/http';
 import * as CryptoJS from 'crypto-js';
@@ -148,12 +148,16 @@ export class SigninService {
     if(!this.getConfig('signinMeta')) {
       return of('');
     }
+   
+    return this.signinMeta()
+      .pipe(
+        map((meta) => {
+          const data = JSON.stringify(meta);
+          const passcode = formatInTimeZone(new Date(), 'UTC', 'yyyy-MM-dd');
 
-    const meta = JSON.stringify(this.signinMeta());
-    const passcode = formatInTimeZone(new Date(), 'UTC', 'yyyy-MM-dd');
-    const encrypted = CryptoJS.AES.encrypt(meta, passcode).toString();
-
-    return of(encrypted);
+          return CryptoJS.AES.encrypt(data, passcode).toString();    
+        }),
+      );
   }
 
 }
