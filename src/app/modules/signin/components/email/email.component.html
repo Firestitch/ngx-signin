@@ -8,7 +8,7 @@
         [(ngModel)]="email"
         name="email"
         type="email"
-        autocomplete="email"
+        autocomplete="username"
         [required]="true"
         [fsAutofocus]="!email"
         [fsFormFunction]="validateExists"
@@ -24,14 +24,14 @@
         matInput
         type="password"
         [(ngModel)]="password"
-        autocomplete="password"
+        autocomplete="current-password"
         name="password"
         [tabIndex]="-1">
     </mat-form-field> 
   </div>
 
-  <app-stacked-buttons>
-    <button        
+    <app-stacked-buttons>
+      <button        
         mat-flat-button
         type="submit"
         name="continue"
