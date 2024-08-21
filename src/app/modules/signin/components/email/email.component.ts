@@ -75,8 +75,12 @@ export class EmailComponent {
     return of(true);
   };
 
-  public changeEmail(): void {
-    this.cleared.emit();
+  public emailChange(e): void {
+    this.email = e.target.value;      
+  }
+
+  public passwordChange(e): void {
+    this.password = e.target.value;      
   }
 
   public keydown(event: KeyboardEvent): void {

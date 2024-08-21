@@ -9,6 +9,7 @@
         name="email"
         type="email"
         autocomplete="username"
+        (change)="emailChange($event)"
         [required]="true"
         [fsAutofocus]="!email"
         [fsFormFunction]="validateExists"
@@ -23,6 +24,7 @@
         #passwordInput
         matInput
         type="password"
+        (change)="passwordChange($event)"
         [(ngModel)]="password"
         autocomplete="current-password"
         name="password"
