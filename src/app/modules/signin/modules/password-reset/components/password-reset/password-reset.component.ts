@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 import { HttpContext } from '@angular/common/http';
 
 import { PasswordData } from '../../data';
+import { SigninService } from '../../../../services/signin.service';
 
 
 @Component({
@@ -35,10 +36,15 @@ export class PasswordResetComponent {
 
   constructor(
     private _passwordData: PasswordData,
+    private _signService: SigninService,
   ) { }
 
   public requestCode = (email: string): Observable<any> => {
     return this._passwordData.request({ email });
+  };
+
+  public emailExists = (email: string): Observable<boolean> => {
+    return this._signService.signinExists(email);
   };
 
   public verifyCode = (code: string): Observable<any> => {
