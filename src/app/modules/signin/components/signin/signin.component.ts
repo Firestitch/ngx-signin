@@ -32,6 +32,7 @@ export class SigninComponent implements OnInit {
   public verificationMethod: IFsVerificationMethod;
   public passwordResetTitle: string;
   public signinTitle;
+  public signinSubtitle;
   public signinContainerComponent;
 
   constructor(
@@ -47,6 +48,7 @@ export class SigninComponent implements OnInit {
     };
 
     this.signinTitle = this._signService.signinConfig.signinTitle;
+    this.signinSubtitle = this._signService.signinConfig.signinSubtitle;
 
     const redirect = this.redirect ? 
       this.redirect : this._route.snapshot.queryParams.redirect;

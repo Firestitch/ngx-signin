@@ -2,7 +2,12 @@
 <ng-container [ngSwitch]="mode">
   <ng-container *ngSwitchCase="'signin'">
     <ng-container *ngIf="signinTitle">
-      <h1>{{signinTitle}}</h1>
+      <h1>
+        {{signinTitle}}
+        <ng-container *ngIf="signinSubtitle">
+          <div class="subheading">{{signinSubtitle}}</div>
+        </ng-container>
+      </h1>
     </ng-container>
     <app-credentials
       [email]="email"

@@ -1,7 +1,11 @@
 <form fsForm [submit]="submit" [confirm]="false">
   <div class="form-fields">
     <mat-form-field class="full-width form-field-multiline-subscript">
-      <mat-label>Email</mat-label>
+      <mat-label>
+        <span class="label-icon">
+          <mat-icon>email</mat-icon> Email
+        </span>
+      </mat-label>
       <input
         #emailInput
         matInput

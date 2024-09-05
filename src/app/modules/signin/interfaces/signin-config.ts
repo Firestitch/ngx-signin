@@ -10,6 +10,7 @@ export interface SigninConfig {
   trustedDeviceExpiryDays?: number;
   signinMeta?: () => Observable<{[key: string]: any}>;
   signinTitle?: string;
+  signinSubtitle?: string;
   verificationCodeLength?: number;
   signinUrl?: string;
   signinVerifyUrl?: string;
