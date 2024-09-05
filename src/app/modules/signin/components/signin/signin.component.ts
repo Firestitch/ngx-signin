@@ -31,6 +31,7 @@ export class SigninComponent implements OnInit {
   public mode: 'signin' | 'two-factor' | 'password-reset' = 'signin';
   public verificationMethod: IFsVerificationMethod;
   public passwordResetTitle: string;
+  public passwordResetSubtitle: string;
   public signinTitle;
   public signinSubtitle;
   public signinContainerComponent;

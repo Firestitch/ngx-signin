@@ -59,6 +59,7 @@ import { PaygroundRoutingModule } from './playground-routing.module';
           signinMeta: () => of({
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
           }),
+          signinSubtitle: 'Your first step to a better future',
           verificationCodeLength: 4,
         };
       },

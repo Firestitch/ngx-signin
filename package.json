@@ -2,7 +2,7 @@
   "name": "@firestitch/signin",
   "title": "Signin",
   "description": "@firestitch/signin",
-  "version": "13.2.8",
+  "version": "13.2.9",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-signin"
@@ -71,7 +71,7 @@
     "@firestitch/menu": "^12.2.3",
     "@firestitch/message": "^12.3.1",
     "@firestitch/password": "^12.6.1",
-    "@firestitch/password-reset": "^13.0.3",
+    "@firestitch/password-reset": "^13.0.4",
     "@firestitch/phone": "^12.6.1",
     "@firestitch/popover": "^12.3.1",
     "@firestitch/prompt": "^12.2.3",

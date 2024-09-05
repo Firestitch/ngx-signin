@@ -12,8 +12,8 @@ import { Observable } from 'rxjs';
 
 import { HttpContext } from '@angular/common/http';
 
-import { PasswordData } from '../../data';
 import { SigninService } from '../../../../services/signin.service';
+import { PasswordData } from '../../data';
 
 
 @Component({
@@ -27,6 +27,7 @@ export class PasswordResetComponent {
   @Input() public email;
 
   @Output() public titleChange = new EventEmitter<string>();
+  @Output() public subtitleChange = new EventEmitter<string>();
   @Output() public cancelled = new EventEmitter();
   @Output() public completed = new EventEmitter<{
     email: string;

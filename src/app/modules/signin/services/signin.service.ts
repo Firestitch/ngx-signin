@@ -19,9 +19,7 @@ export class SigninService {
   private _redirect: string;
   private _signinRootConfig: SigninConfig;
   private _signinProviderConfig: SigninConfig;
-  private _signinConfig: SigninConfig = {
-    signinTitle: 'Sign in to your account',
-  };
+  private _signinConfig: SigninConfig = {};
 
   constructor(
     protected _injector: Injector,
@@ -35,7 +33,12 @@ export class SigninService {
   }
 
   public get signinConfig() {
-    return this._signinConfig;
+    return {
+      signinTitle: 'Sign in to your account',
+      ...this._signinRootConfig,
+      ...this._signinProviderConfig,
+      ...this._signinConfig,
+    };
   }
 
   public get verificationCodeLength() {

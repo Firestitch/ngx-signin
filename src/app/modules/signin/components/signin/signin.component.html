@@ -23,11 +23,15 @@
     </app-two-factor-verification>
   </ng-container>
   <ng-container *ngSwitchCase="'password-reset'">
-    <h1>{{passwordResetTitle}}</h1>
+    <h1>
+      {{passwordResetTitle}}
+      <div class="subheading">{{passwordResetSubtitle}}</div>
+    </h1>    
     <app-password-reset
       [email]="email"
       (completed)="passwordResetCompleted($event)"
       (titleChange)="passwordResetTitle = $event"
+      (subtitleChange)="passwordResetSubtitle=$event"
       (cancelled)="signinMode()">
     </app-password-reset>
   </ng-container>
