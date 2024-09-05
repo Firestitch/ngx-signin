@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+
 import { FS_API_REQUEST_INTERCEPTOR, FsApiModule } from '@firestitch/api';
 import { FsDatePickerModule } from '@firestitch/datepicker';
 import { FsExampleModule } from '@firestitch/example';
@@ -64,6 +66,10 @@ import { PaygroundRoutingModule } from './playground-routing.module';
     }),
   ],
   providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { floatLabel: 'auto', appearance: 'outline' },
+    },
     {
       provide: FS_SOCIAL_SIGNIN_CONFIG,
       useFactory: () => {

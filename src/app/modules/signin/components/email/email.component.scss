@@ -24,7 +24,7 @@ form {
   }
 }
 
-:host :ng-deep {
+:host ::ng-deep {
   .label-icon {
     display: inline-flex;
     align-self: center;
