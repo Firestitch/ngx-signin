@@ -50,7 +50,7 @@
     "@firestitch/clear": "^12.4.0",
     "@firestitch/code-input": "^13.0.1",
     "@firestitch/common": "^12.7.0",
-    "@firestitch/component-tools": "^13.0.6",
+    "@firestitch/component-tools": "^14.0.0",
     "@firestitch/core": "^12.1.0",
     "@firestitch/country": "^12.1.0",
     "@firestitch/date": "^12.4.5",
