@@ -39,8 +39,6 @@
     "@angular/platform-browser": "^14.3.0",
     "@angular/platform-browser-dynamic": "^14.3.0",
     "@angular/router": "^14.3.0",
-    "@compodoc/compodoc": "^1.1.11",
-    "@cypress/schematic": "^1.6.0",
     "@firestitch/2fa": "^13.1.9",
     "@firestitch/api": "^12.4.0",
     "@firestitch/autocomplete": "^12.5.3",
@@ -49,7 +47,7 @@
     "@firestitch/chip": "^12.0.0",
     "@firestitch/clear": "^12.4.0",
     "@firestitch/code-input": "^13.0.1",
-    "@firestitch/common": "^12.7.0",
+    "@firestitch/common": "^13.0.5",
     "@firestitch/component-tools": "^14.0.0",
     "@firestitch/core": "^12.1.0",
     "@firestitch/country": "^12.1.0",
@@ -74,7 +72,7 @@
     "@firestitch/password-reset": "^13.0.4",
     "@firestitch/phone": "^12.6.1",
     "@firestitch/popover": "^12.3.1",
-    "@firestitch/prompt": "^12.2.3",
+    "@firestitch/prompt": "^14.0.1",
     "@firestitch/qrcode": "^13.0.0",
     "@firestitch/radiogroup": "^12.0.3",
     "@firestitch/scroll": "^12.0.2",
@@ -92,7 +90,8 @@
     "npm-run-all": "^4.1.5",
     "rxjs": "^6.5.3",
     "typescript": "4.6.4",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "crypto-js": "^4.2.0"
   },
   "engines": {
     "node": ">=6.0.0"
