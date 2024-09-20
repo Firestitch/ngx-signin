@@ -7,7 +7,7 @@ import {
   Input, Output,
   ViewChild,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 import { MatInput } from '@angular/material/input';
 
@@ -54,7 +54,7 @@ export class EmailComponent {
     private _cdRef: ChangeDetectorRef,
   ) { }
 
-  public validateExists = (control: FormControl): Observable<any> => {
+  public validateExists = (control: UntypedFormControl): Observable<any> => {
     if (control.value) {
       return this._signService.signinExists(control.value)
         .pipe(

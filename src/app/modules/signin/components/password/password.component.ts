@@ -6,7 +6,7 @@ import {
   Input, Output,
   ViewChild,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 import { IFsVerificationMethod } from '@firestitch/2fa';
 import { FsAutofocusDirective } from '@firestitch/common';
@@ -54,7 +54,7 @@ export class PasswordComponent implements AfterContentInit {
     }
   }
 
-  public validatePassword = (control: FormControl): Observable<any> => {
+  public validatePassword = (control: UntypedFormControl): Observable<any> => {
     return this._signService
       .signin(this.email, this.password)
       .pipe(
