@@ -1,19 +1,21 @@
 <fs-list [config]="listConfig">
-  <fs-list-column title="Account">
+  <fs-list-column title="Account" [show]="!accountId">
     <ng-template fs-list-cell let-row="row" class="col-account">
       <div class="row">
-        <fs-badge [image]="row.account?.avatarUrl" color="#ccc" text="?"></fs-badge>
+        <fs-badge [image]="row.account?.avatar?.small" color="#ccc" text="?"></fs-badge>
         <div>
-          <a (click)="accountClick.emit(row)" *ngIf="accountClick.observers.length && row.account; else account">
-            <ng-container *ngTemplateOutlet="account"></ng-container>
-          </a>
+          <ng-container *ngIf="accountClick.observers.length && row.account; else account">
+            <a (click)="accountClick.emit(row)">
+              <ng-container *ngTemplateOutlet="account"></ng-container>
+            </a>
+          </ng-container>
           <div class="small">
-            {{ row.identifier || row.emaill }}
+            {{row.identifier || row.email}}
           </div>
         </div>
       </div>
       <ng-template #account>
-        {{ row.account?.name || 'Anonymous' }}
+        {{row.account?.name || 'Anonymous'}}
       </ng-template>
     </ng-template>
   </fs-list-column>

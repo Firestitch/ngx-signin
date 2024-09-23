@@ -20,7 +20,6 @@ import { map, switchMap, takeUntil } from 'rxjs/operators';
 
 import { SigninStates } from '../../../../consts/signin-states.const';
 import { SigninVerificationCodeStates } from '../../../../consts/signin-verification-code-states.const';
-import { ISignin } from '../../../../interfaces/signin';
 
 
 @Component({
@@ -44,10 +43,7 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
   public prependFilters: IFilterConfigItem[];
 
   @Input()
-  public signinsFetch: (query: any) => Observable<{
-    data: ISignin[];
-    paging?: any;
-  }>;
+  public accountId: number;
 
   @Output()
   public accountClick = new EventEmitter();
@@ -107,6 +103,7 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
       actions: [
         {
           label: 'Export',
+          primary: false,
           click: () => {
             this.export(this.listComponent.filterRef.filterParamsQuery);
           },
@@ -132,6 +129,22 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
           },
         ] : [],  
       fetch: (query) => {
+        if(this.accountId) {
+          query = {
+            ...query,
+            accounts: true,
+            accountAvatars: true,
+          };
+        }
+
+        query = {
+          ...query,
+          verificationCodes: true,
+          ips: true,
+          devices: true,
+          accountId: this.accountId,
+        };
+
         return this._api.get(this.apiUrl, query)
           .pipe(
             map((response) => {
