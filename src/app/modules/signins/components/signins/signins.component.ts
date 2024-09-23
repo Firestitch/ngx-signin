@@ -9,6 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 
+import { FsApi } from '@firestitch/api';
 import { index } from '@firestitch/common';
 import { IFilterConfigItem, ItemType } from '@firestitch/filter';
 import { FsListComponent, FsListConfig } from '@firestitch/list';
@@ -37,6 +38,9 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
   public appendFilters: IFilterConfigItem[];
 
   @Input()
+  public apiUrl = 'signins';
+
+  @Input()
   public prependFilters: IFilterConfigItem[];
 
   @Input()
@@ -59,6 +63,7 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
 
   constructor(
     private _prompt: FsPrompt,
+    private _api: FsApi,
   ) {}
 
   public ngOnInit(): void {
@@ -68,6 +73,11 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this._destroy$.next();
     this._destroy$.complete();
+  }
+
+  public export(query){
+    this._api.createApiFile(`${this.apiUrl}/export`, query)
+      .download();
   }
 
   private _initListConfig(): void {
@@ -93,7 +103,15 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
           label: 'Status',
         },
         ...(this.appendFilters || []),
-      ],   
+      ], 
+      actions: [
+        {
+          label: 'Export',
+          click: () => {
+            this.export(this.listComponent.filterRef.filterParamsQuery);
+          },
+        },
+      ],
       rowActions: this.signinSignOut ? 
         [
           {
@@ -114,11 +132,11 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
           },
         ] : [],  
       fetch: (query) => {
-        return this.signinsFetch(query)
+        return this._api.get(this.apiUrl, query)
           .pipe(
             map((response) => {
               return {
-                data: response.data,
+                data: response.signins,
                 paging: response.paging,
               };
             }),
