@@ -9,7 +9,7 @@ import {
 import { UntypedFormControl } from '@angular/forms';
 
 import { IFsVerificationMethod } from '@firestitch/2fa';
-import { FsAutofocusDirective } from '@firestitch/common';
+import { FsAutoFocusDirective } from '@firestitch/common';
 import { FsFormDirective } from '@firestitch/form';
 
 import { Observable, of, throwError } from 'rxjs';
@@ -27,8 +27,8 @@ import { SigninService } from '../../services';
 })
 export class PasswordComponent implements AfterContentInit {
 
-  @ViewChild(FsAutofocusDirective)
-  public passwordInput: FsAutofocusDirective;
+  @ViewChild(FsAutoFocusDirective, { static: true })
+  public autofocus: FsAutoFocusDirective;
 
   @ViewChild(FsFormDirective, { static: true })
   public form: FsFormDirective;
@@ -66,7 +66,7 @@ export class PasswordComponent implements AfterContentInit {
             return of(true);
           }
 
-          this.passwordInput.focus();
+          this.autofocus.focus();
 
           return throwError(response.error.message);
         }),
