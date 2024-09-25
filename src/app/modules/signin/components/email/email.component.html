@@ -25,14 +25,12 @@
     <mat-form-field class="password">
       <mat-label>Password</mat-label>
       <input
-        #passwordInput
         matInput
         type="password"
         (input)="passwordChange($event)"
         [(ngModel)]="password"
         autocomplete="current-password"
-        name="password"
-        [tabIndex]="-1">
+        name="password">
     </mat-form-field> 
   </div>
 

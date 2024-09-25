@@ -15,7 +15,7 @@ import { IFsVerificationMethod } from '@firestitch/2fa';
 import { FsFormDirective } from '@firestitch/form';
 
 import { Observable, of, throwError } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 import { SigninService } from '../../services';
 
@@ -31,8 +31,8 @@ export class EmailComponent {
   @ViewChild('formFields', { read: ElementRef, static: false })
   public formFields: ElementRef;
 
-  @ViewChild('passwordInput', { read: MatInput })
-  public passwordInput: MatInput;
+  @ViewChild('emailInput', { read: MatInput })
+  public emailInput: MatInput;
 
   @ViewChild(FsFormDirective)
   public form: FsFormDirective;
@@ -59,9 +59,14 @@ export class EmailComponent {
       return this._signService.signinExists(control.value)
         .pipe(
           switchMap((exists) => {
-            return exists ? of(true) : throwError('Could not find your account');
+            if(exists) {
+              return of(true);
+            }
+            
+            this.emailInput.focus();
+
+            return throwError('Could not find your account');
           }),
-          tap(() => this.passwordInput.focus()),
         );
     }
 
