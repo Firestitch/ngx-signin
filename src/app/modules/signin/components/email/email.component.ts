@@ -102,7 +102,7 @@ export class EmailComponent {
 
   public passwordChange(e): void {
     this.password = e.target.value;      
-    this.submit();
+    this.form.triggerSubmit();
   }
 
   public keydown(event: KeyboardEvent): void {
