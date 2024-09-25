@@ -14,9 +14,11 @@ import { MatInput } from '@angular/material/input';
 import { IFsVerificationMethod } from '@firestitch/2fa';
 import { FsFormDirective } from '@firestitch/form';
 
-import { Observable, of, throwError } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, switchMap, tap } from 'rxjs/operators';
+
+import { signinRequiresVerification } from '../../helpers';
 import { SigninService } from '../../services';
 
 
@@ -54,29 +56,43 @@ export class EmailComponent {
     private _cdRef: ChangeDetectorRef,
   ) { }
 
-  public validateExists = (control: UntypedFormControl): Observable<any> => {
-    if (control.value) {
-      return this._signService.signinExists(control.value)
+  public validateEmail = (control: UntypedFormControl): Observable<any> => {
+    if(this.email && this.password) {
+      return this._signService
+        .signin(this.email, this.password)
         .pipe(
-          switchMap((exists) => {
-            if(exists) {
+          tap((response) => this.signedIn.emit(response)),
+          catchError((response) => {
+            if (signinRequiresVerification(response.status)) {
+              this.verificationRequired.emit(response?.error?.data?.verificationMethod);
+
               return of(true);
             }
-            
+
             this.emailInput.focus();
 
-            return throwError('Could not find your account');
+            return throwError(response.error.message);
           }),
         );
     }
+ 
+    return this._signService.signinExists(control.value)
+      .pipe(
+        switchMap((exists) => {
+          if(exists) {
+            this.validated.emit({ email: this.email, password: this.password });
 
-    return of(true);
+            return of(true);
+          }
+            
+          this.emailInput.focus();
+
+          return throwError('Could not find your account');
+        }),
+      );
   };
 
   public submit = (): Observable<any> => {
-    this.validated.emit({ email: this.email, password: this.password });
-    this._cdRef.markForCheck();
-
     return of(true);
   };
 
@@ -86,9 +102,11 @@ export class EmailComponent {
 
   public passwordChange(e): void {
     this.password = e.target.value;      
+    this.submit();
   }
 
   public keydown(event: KeyboardEvent): void {
+    this.password = '';
     if (event.code === 'Tab') {
       this.form.triggerSubmit();
     }

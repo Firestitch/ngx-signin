@@ -16,7 +16,7 @@
         (input)="emailChange($event)"
         [required]="true"
         [fsAutofocus]="!email"
-        [fsFormFunction]="validateExists"
+        [fsFormFunction]="validateEmail"
         [fsFormEmail]="true"
         [validateOnSubmit]="true"
         (keydown)="keydown($event)">

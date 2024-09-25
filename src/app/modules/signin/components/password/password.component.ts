@@ -1,5 +1,4 @@
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
@@ -25,7 +24,7 @@ import { SigninService } from '../../services';
   styleUrls: ['./password.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PasswordComponent implements AfterContentInit {
+export class PasswordComponent {
 
   @ViewChild(FsAutoFocusDirective, { static: true })
   public autofocus: FsAutoFocusDirective;
@@ -45,14 +44,6 @@ export class PasswordComponent implements AfterContentInit {
   constructor(
     private _signService: SigninService,
   ) { }
-
-  public ngAfterContentInit(): void {
-    if (this.email && this.password) {
-      setTimeout(() => {
-        this.form.triggerSubmit();
-      });
-    }
-  }
 
   public validatePassword = (control: UntypedFormControl): Observable<any> => {
     return this._signService
