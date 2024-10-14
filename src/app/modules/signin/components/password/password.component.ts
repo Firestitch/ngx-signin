@@ -1,8 +1,10 @@
 import {
+  AfterContentInit,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Input, Output,
+  Input,
+  Output,
   ViewChild,
 } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
@@ -24,7 +26,7 @@ import { SigninService } from '../../services';
   styleUrls: ['./password.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PasswordComponent {
+export class PasswordComponent implements AfterContentInit {
 
   @ViewChild(FsAutoFocusDirective, { static: true })
   public autofocus: FsAutoFocusDirective;
@@ -45,6 +47,14 @@ export class PasswordComponent {
     private _signService: SigninService,
   ) { }
 
+  public ngAfterContentInit(): void {
+    if(this.email && this.password) {
+      setTimeout(() => {
+        this.form.triggerSubmit(); 
+      });
+    }
+  }
+
   public validatePassword = (control: UntypedFormControl): Observable<any> => {
     return this._signService
       .signin(this.email, this.password)
@@ -59,7 +69,7 @@ export class PasswordComponent {
 
           this.autofocus.focus();
 
-          return throwError(response.error.message);
+          return throwError(() => new Error(response.error.message));
         }),
       );
   };

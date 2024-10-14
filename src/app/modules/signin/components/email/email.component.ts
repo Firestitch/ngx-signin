@@ -1,6 +1,5 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -15,10 +14,8 @@ import { IFsVerificationMethod } from '@firestitch/2fa';
 import { FsFormDirective } from '@firestitch/form';
 
 
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, switchMap, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
-import { signinRequiresVerification } from '../../helpers';
 import { SigninService } from '../../services';
 
 
@@ -53,43 +50,12 @@ export class EmailComponent {
 
   constructor(
     private _signService: SigninService,
-    private _cdRef: ChangeDetectorRef,
   ) { }
 
   public validateEmail = (control: UntypedFormControl): Observable<any> => {
-    if(this.email && this.password) {
-      return this._signService
-        .signin(this.email, this.password)
-        .pipe(
-          tap((response) => this.signedIn.emit(response)),
-          catchError((response) => {
-            if (signinRequiresVerification(response.status)) {
-              this.verificationRequired.emit(response?.error?.data?.verificationMethod);
+    this.validated.emit({ email: this.email, password: this.password });
 
-              return of(true);
-            }
-
-            this.emailInput.focus();
-
-            return throwError(response.error.message);
-          }),
-        );
-    }
- 
-    return this._signService.signinExists(control.value)
-      .pipe(
-        switchMap((exists) => {
-          if(exists) {
-            this.validated.emit({ email: this.email, password: this.password });
-
-            return of(true);
-          }
-            
-          this.emailInput.focus();
-
-          return throwError('Could not find your account');
-        }),
-      );
+    return of(true);   
   };
 
   public submit = (): Observable<any> => {
