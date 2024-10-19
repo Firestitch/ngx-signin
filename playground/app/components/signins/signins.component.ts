@@ -82,7 +82,7 @@ export class SigninsComponent implements OnInit {
     console.log(row);
   }
 
-  public signinsFetch = (query) => {
+  public signinsFetch = () => {
     return of({
       data: this.signins,
     });

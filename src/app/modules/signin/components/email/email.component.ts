@@ -16,8 +16,6 @@ import { FsFormDirective } from '@firestitch/form';
 
 import { Observable, of } from 'rxjs';
 
-import { SigninService } from '../../services';
-
 
 @Component({
   selector: 'app-email',
@@ -47,10 +45,6 @@ export class EmailComponent {
   public password: string;
   public passwordError;
   public action;
-
-  constructor(
-    private _signService: SigninService,
-  ) { }
 
   public validateEmail = (control: UntypedFormControl): Observable<any> => {
     this.validated.emit({ email: this.email, password: this.password });

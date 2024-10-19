@@ -7,6 +7,6 @@
 @import "@firestitch/datepicker/styles";
 @import '../src/app/styles.scss';
 
-@include fs-drawer($mat-blue);
 @include fs-style.core();
+@include fs-drawer($mat-blue);
 @include fs-form($app-theme);
