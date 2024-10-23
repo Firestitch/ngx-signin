@@ -25,11 +25,9 @@ form {
 :host ::ng-deep {
   .label-icon {
     display: inline-flex;
-    align-self: center;
 
     mat-icon {
       margin-right: 3px;
-      opacity: .6;
       align-self: center;
     }
   }
