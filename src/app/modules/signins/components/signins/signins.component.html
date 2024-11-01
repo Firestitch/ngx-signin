@@ -1,6 +1,6 @@
 <fs-list [config]="listConfig">
-  <fs-list-column title="Account" [show]="!accountId">
-    <ng-template fs-list-cell let-row="row" class="col-account">
+  <fs-list-column title="Account" [show]="!accountId" class="col-account">
+    <ng-template fs-list-cell let-row="row">
       <div class="row">
         <fs-badge [image]="row.account?.avatar?.small" color="#ccc" text="?"></fs-badge>
         <div>
