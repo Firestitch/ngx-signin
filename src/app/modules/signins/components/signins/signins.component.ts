@@ -60,7 +60,7 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
   constructor(
     private _prompt: FsPrompt,
     private _api: FsApi,
-  ) {}
+  ) { }
 
   public ngOnInit(): void {
     this._initListConfig();
@@ -71,7 +71,7 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
     this._destroy$.complete();
   }
 
-  public export(query){
+  public export(query) {
     this._api.createApiFile(`${this.apiUrl}/export`, query)
       .download();
   }
@@ -85,12 +85,12 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
           name: 'keyword',
           type: ItemType.Keyword,
           label: 'Search',
-        },        
+        },
         {
           name: 'createDate',
           type: ItemType.DateRange,
           label: ['From', 'To'],
-        },       
+        },
         {
           name: 'state',
           type: ItemType.Select,
@@ -99,7 +99,7 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
           label: 'Status',
         },
         ...(this.appendFilters || []),
-      ], 
+      ],
       actions: [
         {
           label: 'Export',
@@ -109,7 +109,7 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
           },
         },
       ],
-      rowActions: this.signinSignOut ? 
+      rowActions: this.signinSignOut ?
         [
           {
             label: 'Sign Out',
@@ -127,9 +127,9 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
                 });
             },
           },
-        ] : [],  
+        ] : [],
       fetch: (query) => {
-        if(this.accountId) {
+        if (!this.accountId) {
           query = {
             ...query,
             accounts: true,
