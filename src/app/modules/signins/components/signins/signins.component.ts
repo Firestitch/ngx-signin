@@ -15,7 +15,7 @@ import { IFilterConfigItem, ItemType } from '@firestitch/filter';
 import { FsListComponent, FsListConfig } from '@firestitch/list';
 import { FsPrompt } from '@firestitch/prompt';
 
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { map, switchMap, takeUntil } from 'rxjs/operators';
 
 import { SigninStates } from '../../../../consts/signin-states.const';
@@ -29,9 +29,6 @@ import { SigninVerificationCodeStates } from '../../../../consts/signin-verifica
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FsSigninsComponent implements OnInit, OnDestroy {
-
-  @Input()
-  public signinSignOut: (signin: any) => Observable<any>;
 
   @Input()
   public appendFilters: IFilterConfigItem[];
@@ -112,25 +109,24 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
           },
         },
       ],
-      rowActions: this.signinSignOut ?
-        [
-          {
-            label: 'Sign Out',
-            click: (signout) => {
-              this._prompt.confirm({
-                title: 'Confirm',
-                template: 'Are you sure you would like to sign out this sign in?',
-              })
-                .pipe(
-                  switchMap(() => this.signinSignOut(signout)),
-                  takeUntil(this._destroy$),
-                )
-                .subscribe(() => {
-                  this.listComponent.reload();
-                });
-            },
+      rowActions: [
+        {
+          label: 'Sign Out',
+          click: (signin) => {
+            this._prompt.confirm({
+              title: 'Confirm',
+              template: 'Are you sure you would like to sign out this sign in?',
+            })
+              .pipe(
+                switchMap(() => this._api.post([this.apiUrl,signin.id, 'signout'].join('/'))),
+                takeUntil(this._destroy$),
+              )
+              .subscribe(() => {
+                this.listComponent.reload();
+              });
           },
-        ] : [],
+        },
+      ],
       fetch: (query) => {
         if (!this.accountId) {
           query = {
