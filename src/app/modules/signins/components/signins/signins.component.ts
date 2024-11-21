@@ -69,7 +69,9 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
   }
 
   public export(query) {
-    this._api.createApiFile(`${this.apiUrl}/export`, query)
+    this._api.createApiFile(`${this.apiUrl}/export`, {
+      data: query,
+    })
       .download();
   }
 
