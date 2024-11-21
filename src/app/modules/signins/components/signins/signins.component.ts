@@ -105,7 +105,10 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
           label: 'Export',
           primary: false,
           click: () => {
-            this.export(this.listComponent.filterRef.filterParamsQuery);
+            this.export({
+              ...this.listComponent.filterRef.filterParamsQuery,
+              accountId: this.accountId,
+            });
           },
         },
       ],
