@@ -1,6 +1,10 @@
 
 .title {
   text-align: center;
+
+  &.signin-title {
+    margin-bottom: 20px;
+  }
 }
 
 .subheading {
