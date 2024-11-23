@@ -1,13 +1,14 @@
-
 <ng-container [ngSwitch]="mode">
   <ng-container *ngSwitchCase="'signin'">
     <ng-container *ngIf="signinTitle">
-      <h1>
-        {{signinTitle}}
-        <ng-container *ngIf="signinSubtitle">
-          <div class="subheading">{{signinSubtitle}}</div>
-        </ng-container>
-      </h1>
+      <div class="mat-mdc-card-title title">
+        {{ signinTitle }}
+      </div>
+      <ng-container *ngIf="signinSubtitle">
+        <p class="subheading">
+          {{ signinSubtitle }}
+        </p>
+      </ng-container>
     </ng-container>
     <app-credentials
       [email]="email"
@@ -16,17 +17,21 @@
     </app-credentials>
   </ng-container>
   <ng-container *ngSwitchCase="'two-factor'">
-    <h1>2-Step Verification</h1>
+    <div class="mat-mdc-card-title title">
+      2-Step Verification
+    </div>
     <app-two-factor-verification
       [verificationMethod]="verificationMethod"
       (cancelled)="signinMode()">
     </app-two-factor-verification>
   </ng-container>
   <ng-container *ngSwitchCase="'password-reset'">
-    <h1>
-      {{passwordResetTitle}}
-      <div class="subheading">{{passwordResetSubtitle}}</div>
-    </h1>    
+    <div class="mat-mdc-card-title title">
+      {{ passwordResetTitle }}
+    </div>
+    <p class="subheading">
+      {{ passwordResetSubtitle }}
+    </p>
     <app-password-reset
       [email]="email"
       (completed)="passwordResetCompleted($event)"
