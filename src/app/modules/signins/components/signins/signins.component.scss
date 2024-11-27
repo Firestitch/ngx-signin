@@ -16,6 +16,12 @@
       }
     }
   }
+
+  .col-method {
+    .method {
+      text-transform: capitalize;
+    }
+  }
 }
 
 fs-device-os {

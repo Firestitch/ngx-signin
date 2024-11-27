@@ -1,8 +1,17 @@
 <fs-list [config]="listConfig">
-  <fs-list-column title="Account" [show]="!accountId" class="col-account">
-    <ng-template fs-list-cell let-row="row">
+  <fs-list-column
+      title="Account"
+      [show]="!accountId"
+      class="col-account">
+    <ng-template
+        fs-list-cell
+        let-row="row">
       <div class="row">
-        <fs-badge [image]="row.account?.avatar?.small" color="#ccc" text="?"></fs-badge>
+        <fs-badge
+          [image]="row.account?.avatar?.small"
+          color="#ccc"
+          text="?">
+        </fs-badge>
         <div>
           <ng-container *ngIf="accountClick.observers.length && row.account; else account">
             <a (click)="accountClick.emit(row)">
@@ -10,39 +19,49 @@
             </a>
           </ng-container>
           <div class="small">
-            {{row.identifier || row.email}}
+            {{ row.identifier || row.email }}
           </div>
         </div>
       </div>
       <ng-template #account>
-        {{row.account?.name || 'Anonymous'}}
+        {{ row.account?.name || 'Anonymous' }}
       </ng-template>
     </ng-template>
   </fs-list-column>
   <fs-list-column title="Status">
-    <ng-template fs-list-cell let-row="row">
-      {{SigninStates[row.state]}}
-      <div class="small">{{row.message}}</div>
+    <ng-template
+        fs-list-cell
+        let-row="row">
+      {{ SigninStates[row.state] }}
+      @if (row.verificationCode) {
+        <div
+            class="small"
+            [matTooltip]="'Recipient: ' + row.verificationCode.recipient">
+          {{ row.verificationCode.message }}
+        </div>
+      } @else {
+        <div class="small">
+          {{ row.message }}
+        </div>
+      }
     </ng-template>
-  </fs-list-column> 
-  <fs-list-column title="Verification" align="center">
-    <ng-template fs-list-cell let-row="row">
-      <ng-container *ngIf="row.verificationCode">
-        <fs-popover [template]="codeTmpl">
-          {{row.verificationCode.id}}
-        </fs-popover>
-        <ng-template #codeTmpl>
-          <div class="verification-popover">
-            <div>{{SigninVerificationCodeStates[row.verificationCode.state]}}</div>
-            <div>{{row.verificationCode.attempts}} {{row.verificationCode.attempts === 1 ? 'Attempt' : 'Attempts'}}</div>
-            <div>Created on {{row.verificationCode.createDate | fsDateFormat: 'full-date-time'}}</div>
-          </div>
-        </ng-template>
-      </ng-container>
+  </fs-list-column>
+  <fs-list-column title="Method">
+    <ng-template
+        fs-list-cell
+        class="col-method"
+        let-row="row">
+      <span class="method">
+        {{ row.method }}
+      </span>
     </ng-template>
-  </fs-list-column> 
-  <fs-list-column title="Device" align="center">
-    <ng-template fs-list-cell let-row="row">
+  </fs-list-column>
+  <fs-list-column
+      title="Device"
+      align="center">
+    <ng-template
+        fs-list-cell
+        let-row="row">
       <fs-device-os
         *ngIf="row.device"
         [type]="row.device.type"
@@ -53,7 +72,9 @@
     </ng-template>
   </fs-list-column>
   <fs-list-column title="Browser">
-    <ng-template fs-list-cell let-row="row">
+    <ng-template
+        fs-list-cell
+        let-row="row">
       <fs-device-browser
         *ngIf="row.device"
         [type]="row.device.browserType"
@@ -63,7 +84,9 @@
     </ng-template>
   </fs-list-column>
   <fs-list-column title="Location">
-    <ng-template fs-list-cell let-row="row">
+    <ng-template
+        fs-list-cell
+        let-row="row">
       <fs-ip
         *ngIf="row.ip"
         [country]="row.ip.country"
@@ -74,9 +97,14 @@
       </fs-ip>
     </ng-template>
   </fs-list-column>
-  <fs-list-column name="create_date" [sortable]="true" title="Date">
-    <ng-template fs-list-cell let-row="row">
-      {{row.createDate | fsDateFormat: 'full-date-time'}}
+  <fs-list-column
+      name="create_date"
+      [sortable]="true"
+      title="Date">
+    <ng-template
+        fs-list-cell
+        let-row="row">
+      {{ row.createDate | fsDateFormat: 'full-date-time' }}
     </ng-template>
   </fs-list-column>
 </fs-list>

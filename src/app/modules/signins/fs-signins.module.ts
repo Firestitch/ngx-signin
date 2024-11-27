@@ -1,14 +1,15 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { FsListModule } from '@firestitch/list';
-import { FsDateModule } from '@firestitch/date';
-import { FsCountryModule } from '@firestitch/country';
-import { FsDeviceModule } from '@firestitch/device';
 import { FsBadgeModule } from '@firestitch/badge';
+import { FsCountryModule } from '@firestitch/country';
+import { FsDateModule } from '@firestitch/date';
+import { FsDeviceModule } from '@firestitch/device';
 import { FsIpModule } from '@firestitch/ip';
+import { FsListModule } from '@firestitch/list';
 import { FsPopoverModule } from '@firestitch/popover';
 
 import { FsSigninsComponent } from './components/signins/signins.component';
@@ -19,6 +20,7 @@ import { FsSigninsComponent } from './components/signins/signins.component';
     CommonModule,
 
     MatIconModule,
+    MatTooltipModule,
 
     FsListModule,
     FsDateModule,
