@@ -1,0 +1,21 @@
+.or-signin {
+  display: flex;
+  flex-direction: row;
+  color: #bebebe;
+  margin: 25px;
+}
+
+.or-signin:before, .or-signin:after{
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid #bebebe;
+  margin: auto;
+}
+
+.or-signin:before {
+  margin-right: 10px
+}
+
+.or-signin:after {
+  margin-left: 10px
+}

@@ -1,8 +1,9 @@
-<ng-container *ngIf="hasSocialProviders">
-  <fs-social-signin-buttons 
+<ng-container *ngIf="show">
+  <div class="or-signin">
+    or sign in with
+  </div>
+  <fs-social-signin-buttons
     [redirectUri]="redirectUri"
     [width]="'100%'">
   </fs-social-signin-buttons>
-
-  <app-or-line></app-or-line>
 </ng-container>

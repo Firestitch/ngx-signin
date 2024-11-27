@@ -1,5 +1,6 @@
 import {
-  Component, ChangeDetectionStrategy, OnInit,
+  ChangeDetectionStrategy,
+  Component,
 } from '@angular/core';
 
 

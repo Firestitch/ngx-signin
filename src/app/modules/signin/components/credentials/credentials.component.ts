@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
+  inject,
   Input,
   OnDestroy,
   OnInit,
@@ -11,6 +12,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 
 import { IFsVerificationMethod } from '@firestitch/2fa';
+import { FsSocialSignin } from '@firestitch/social-signin';
 
 import { Subject } from 'rxjs';
 
@@ -35,6 +37,7 @@ export class CredentialsComponent implements OnInit, OnDestroy {
   public mode: 'email' | 'password' = 'email';
 
   private _destroy$ = new Subject();
+  private _socialSignin = inject(FsSocialSignin);
 
   constructor(
     private _signinService: SigninService,
@@ -53,7 +56,7 @@ export class CredentialsComponent implements OnInit, OnDestroy {
   }
 
   public get showSocialSignins(): boolean {
-    return this._signinService.showSocialSignins;
+    return this._signinService.showSocialSignins && this._socialSignin.hasSigninProviders;
   }
 
   public onSignedIn($event): void {

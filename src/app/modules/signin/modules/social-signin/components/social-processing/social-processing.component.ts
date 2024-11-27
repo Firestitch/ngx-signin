@@ -1,12 +1,15 @@
 import {
-  Component, ChangeDetectionStrategy, OnInit, Input,
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { FsMessage, MessageMode } from '@firestitch/message';
 
-import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { SocialSigninService } from '../../../../services';
 

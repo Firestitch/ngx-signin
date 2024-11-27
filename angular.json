@@ -26,6 +26,11 @@
                 "glob": "**/*",
                 "input": "node_modules/@firestitch/country/assets",
                 "output": "assets/"
+              },      
+              {
+                "glob": "**/*",
+                "input": "node_modules/@firestitch/social-signin/assets",
+                "output": "assets/social-signin/"
               },            
               {
                 "glob": "**/*",

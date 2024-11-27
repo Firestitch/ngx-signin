@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
+  inject,
   Input,
   OnInit,
 } from '@angular/core';
@@ -36,11 +37,9 @@ export class SigninComponent implements OnInit {
   public signinSubtitle;
   public signinContainerComponent;
 
-  constructor(
-    private _signService: SigninService,
-    private _cdRef: ChangeDetectorRef,
-    private _route: ActivatedRoute,
-  ) { }
+  private _signService = inject(SigninService);  
+  private _route = inject(ActivatedRoute);
+  private _cdRef = inject(ChangeDetectorRef);  
 
   public ngOnInit(): void {
     this._signService.signinConfig = {

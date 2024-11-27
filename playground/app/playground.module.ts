@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -12,7 +12,7 @@ import { FsFilterModule } from '@firestitch/filter';
 import { FsLabelModule } from '@firestitch/label';
 import { FsMessage, FsMessageModule } from '@firestitch/message';
 import { FsSigninModule, FsSigninsModule, SigninConfig } from '@firestitch/signin';
-import { FS_SOCIAL_SIGNIN_CONFIG } from '@firestitch/social-signin';
+import { AppleSigninProvider, FacebookSigninProvider, FsSocialSignin, GoogleSigninProvider, SocialSigninConfig } from '@firestitch/social-signin';
 import { FsStoreModule } from '@firestitch/store';
 
 import { of } from 'rxjs';
@@ -51,6 +51,7 @@ import { PaygroundRoutingModule } from './playground-routing.module';
       factory: (message: FsMessage): SigninConfig => {
         return {
           trustedDeviceExpiryDays: 30,
+          showSocialSignins: true,
           beforeProcessSignin: (response) => of(response),
           processSignin: (response, redirect) => of(response, redirect)
             .pipe(
@@ -72,12 +73,22 @@ import { PaygroundRoutingModule } from './playground-routing.module';
       useValue: { floatLabel: 'auto', appearance: 'outline' },
     },
     {
-      provide: FS_SOCIAL_SIGNIN_CONFIG,
-      useFactory: () => {
-        return {
-          providers: [],
+      provide: APP_INITIALIZER,
+      useFactory: (socialSignin: FsSocialSignin) => {
+        return () => {
+          socialSignin.init({
+            providers: [
+              new GoogleSigninProvider('46829300559-tjhftg5s3ih3mnuq53pm9540nn5s43r9.apps.googleusercontent.com'),
+              new FacebookSigninProvider('197085513672785'),
+              new AppleSigninProvider('197085513672785'),
+            ],
+          } as SocialSigninConfig);
+
+          return of(null);
         };
       },
+      deps: [FsSocialSignin],
+      multi: true,
     },
     {
       provide: FS_API_REQUEST_INTERCEPTOR,

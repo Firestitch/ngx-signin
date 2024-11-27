@@ -1,6 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-
-import { FsSocialSignin } from '@firestitch/social-signin';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 
 @Component({
@@ -11,18 +9,15 @@ import { FsSocialSignin } from '@firestitch/social-signin';
 })
 export class SocialSigninComponent {
 
+  @Input() public show = true;
+
   public redirectUri;
 
   constructor(
-    private _socialSignin: FsSocialSignin,
   ) {
     const url = new URL(window.location.origin + window.location.pathname);
     url.pathname = `${url.pathname}/social`;
     this.redirectUri = url.toString();
-  }
-
-  public get hasSocialProviders(): boolean {
-    return this._socialSignin.hasSigninProviders;
   }
 
 }

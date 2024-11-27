@@ -6,13 +6,11 @@ import {
   Input, Output,
   ViewChild,
 } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
 
 import { MatInput } from '@angular/material/input';
 
 import { IFsVerificationMethod } from '@firestitch/2fa';
 import { FsFormDirective } from '@firestitch/form';
-
 
 import { Observable, of } from 'rxjs';
 
@@ -35,6 +33,7 @@ export class EmailComponent {
   public form: FsFormDirective;
 
   @Input() public email;
+  @Input() public continueLabel = 'Continue';
 
   @Output() public signedIn = new EventEmitter<any>();
   @Output() public verificationRequired = new EventEmitter<IFsVerificationMethod>();
@@ -46,7 +45,7 @@ export class EmailComponent {
   public passwordError;
   public action;
 
-  public validateEmail = (control: UntypedFormControl): Observable<any> => {
+  public validateEmail = (): Observable<any> => {
     this.validated.emit({ email: this.email, password: this.password });
 
     return of(true);   

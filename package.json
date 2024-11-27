@@ -2,7 +2,7 @@
   "name": "@firestitch/signin",
   "title": "Signin",
   "description": "@firestitch/signin",
-  "version": "18.0.11",
+  "version": "18.0.12",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-signin"
@@ -81,7 +81,7 @@
     "@firestitch/selectbutton": "^18.0.5",
     "@firestitch/selection": "^18.0.3",
     "@firestitch/skeleton": "^18.0.0",
-    "@firestitch/social-signin": "^18.0.0",
+    "@firestitch/social-signin": "^18.0.3",
     "@firestitch/store": "^18.0.0",
     "@firestitch/style": "^18.0.26",
     "crypto-js": "^4.2.0",

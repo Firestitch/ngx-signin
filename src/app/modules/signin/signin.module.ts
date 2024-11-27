@@ -14,6 +14,7 @@ import { FsCommonModule } from '@firestitch/common';
 import { FsFormModule } from '@firestitch/form';
 import { FsLabelModule } from '@firestitch/label';
 import { FsPasswordModule } from '@firestitch/password';
+import { FsSocialSigninModule } from '@firestitch/social-signin';
 
 import { CredentialsComponent, EmailComponent, PasswordComponent, SigninComponent, SocialComponent } from './components';
 import { SIGNIN_CONFIG_ROOT } from './injectors';
@@ -45,6 +46,7 @@ import { SigninService, SocialSigninService } from './services';
     Fs2faVerificationModule,
     FsPasswordModule,
     FsLabelModule,
+    FsSocialSigninModule,
     FsCommonModule,
 
     SocialSigninModule,

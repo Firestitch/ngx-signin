@@ -1,9 +1,15 @@
-<form fsForm [submit]="submit" [confirm]="false">
+<form
+    fsForm
+    [submit]="submit"
+    [confirm]="false">
   <div class="form-fields">
     <mat-form-field class="full-width form-field-multiline-subscript">
       <mat-label>
         <span class="label-icon">
-          <mat-icon>mail_outline</mat-icon> Email
+          <mat-icon>
+            mail_outline
+          </mat-icon>
+          Email
         </span>
       </mat-label>
       <input
@@ -21,9 +27,10 @@
         [validateOnSubmit]="true"
         (keydown)="keydown($event)">
     </mat-form-field>
-
     <mat-form-field class="password">
-      <mat-label>Password</mat-label>
+      <mat-label>
+        Password
+      </mat-label>
       <input
         matInput
         type="password"
@@ -31,16 +38,15 @@
         [(ngModel)]="password"
         autocomplete="current-password"
         name="password">
-    </mat-form-field> 
+    </mat-form-field>
   </div>
-
-    <app-stacked-buttons>
-      <button        
+  <app-stacked-buttons>
+    <button
         mat-flat-button
         type="submit"
         name="continue"
         color="primary">
-      Continue
-    </button>  
-  </app-stacked-buttons>  
+      {{ continueLabel }}
+    </button>
+  </app-stacked-buttons>
 </form>

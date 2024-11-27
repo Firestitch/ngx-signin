@@ -45,10 +45,11 @@ export class SocialSigninService extends SigninService {
       .pipe(
         switchMap(() => {
           if(!this._injector.get(FsSocialSignin).hasOAuthResponse) {
-            return throwError(false);
+            return throwError(() => false);
           }
 
-          const oAuthResponse = this._injector.get(FsSocialSignin).oAuthResponse;
+          const oAuthResponse = this._injector
+            .get(FsSocialSignin).oAuthResponse;
           switch(oAuthResponse.provider) {
             case Provider.Facebook:
               return this
@@ -59,7 +60,7 @@ export class SocialSigninService extends SigninService {
                 .signinGoogle(oAuthResponse.code,oAuthResponse.redirectUri);
           }
 
-          return throwError(false);
+          return throwError(() => false);
         }),
       );
   }

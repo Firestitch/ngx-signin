@@ -1,14 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { FsSocialSigninModule } from '@firestitch/social-signin';
-
-//import { LogoModule } from '../../../logo';
-import { OrLineModule } from '../or-line';
 
 import {
   SocialProcessingComponent,
@@ -25,9 +22,6 @@ import {
     MatProgressSpinnerModule,
 
     FsSocialSigninModule,
-
-    OrLineModule,
-    //LogoModule,
   ],
   declarations: [
     SocialSigninComponent,
