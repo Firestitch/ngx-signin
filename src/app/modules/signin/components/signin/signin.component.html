@@ -1,7 +1,7 @@
 <ng-container [ngSwitch]="mode">
   <ng-container *ngSwitchCase="'signin'">
     <ng-container *ngIf="signinTitle">
-      <div class="mat-mdc-card-title title signin-title">
+      <div class="title signin-title">
         {{ signinTitle }}
       </div>
       <ng-container *ngIf="signinSubtitle">
@@ -17,7 +17,7 @@
     </app-credentials>
   </ng-container>
   <ng-container *ngSwitchCase="'two-factor'">
-    <div class="mat-mdc-card-title title two-factor-title">
+    <div class="title two-factor-title">
       2-Step Verification
     </div>
     <app-two-factor-verification
@@ -26,7 +26,7 @@
     </app-two-factor-verification>
   </ng-container>
   <ng-container *ngSwitchCase="'password-reset'">
-    <div class="mat-mdc-card-title title password-reset-title">
+    <div class="title password-reset-title">
       {{ passwordResetTitle }}
     </div>
     <p class="subheading">

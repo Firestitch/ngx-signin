@@ -1,6 +1,7 @@
 
 .title {
   text-align: center;
+  font-size: var(--mat-card-title-text-size, var(--mat-sys-title-large-size));
 
   &.signin-title {
     margin-bottom: 20px;
