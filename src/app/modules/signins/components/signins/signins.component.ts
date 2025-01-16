@@ -113,14 +113,14 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
       ],
       rowActions: [
         {
-          label: 'Sign Out',
+          label: 'Sign out',
           click: (signin) => {
             this._prompt.confirm({
               title: 'Confirm',
               template: 'Are you sure you would like to sign out this sign in?',
             })
               .pipe(
-                switchMap(() => this._api.post([this.apiUrl,signin.id, 'signout'].join('/'))),
+                switchMap(() => this._api.post([this.apiUrl, signin.id, 'signout'].join('/'))),
                 takeUntil(this._destroy$),
               )
               .subscribe(() => {
