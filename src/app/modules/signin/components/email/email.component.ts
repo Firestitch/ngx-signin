@@ -12,7 +12,7 @@ import { MatInput } from '@angular/material/input';
 import { IFsVerificationMethod } from '@firestitch/2fa';
 import { FsFormDirective } from '@firestitch/form';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 
 
 @Component({
@@ -42,13 +42,19 @@ export class EmailComponent {
   @Output() public cleared = new EventEmitter<any>();
 
   public password: string;
-  public passwordError;
-  public action;
-
+  public initTimestamp = Date.now();
+  
   public validateEmail = (): Observable<any> => {
-    this.validated.emit({ email: this.email, password: this.password });
+    return of(true)
+      .pipe(
+        tap(() => {
+          // Delay 1 second to prevent password autofill from browser on page load
 
-    return of(true);   
+          if((Date.now() - this.initTimestamp) > 1000) {
+            this.validated.emit({ email: this.email, password: this.password });
+          }
+        }),
+      );   
   };
 
   public submit = (): Observable<any> => {
@@ -60,7 +66,7 @@ export class EmailComponent {
   }
 
   public passwordChange(e): void {
-    this.password = e.target.value;      
+    this.password = e.target.value;
     this.form.triggerSubmit();
   }
 

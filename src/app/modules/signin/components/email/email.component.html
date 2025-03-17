@@ -25,7 +25,7 @@
         [fsFormFunction]="validateEmail"
         [fsFormEmail]="true"
         [validateOnSubmit]="true"
-        (keydown)="keydown($event)">
+        (keyup)="keydown($event)">
     </mat-form-field>
     <mat-form-field class="password">
       <mat-label>
