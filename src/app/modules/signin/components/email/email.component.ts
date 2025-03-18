@@ -49,10 +49,7 @@ export class EmailComponent {
       .pipe(
         tap(() => {
           // Delay 2 seconds to prevent password autofill from browser on page load
-          console.log('initTimestamp', this.initTimestamp);
-          console.log('Date.now()', Date.now());
-          console.log('Date.now() - this.initTimestamp', Date.now() - this.initTimestamp);
-          if((Date.now() - this.initTimestamp) > (5 * 1000)) {
+          if((Date.now() - this.initTimestamp) > (2 * 1000)) {
             this.validated.emit({ email: this.email, password: this.password });
           }
         }),
@@ -68,8 +65,6 @@ export class EmailComponent {
   }
 
   public passwordChange(e): void {
-    console.log('Password change'); 
-    console.log('Password change Date.now()', Date.now());
     this.password = e.target.value;
     this.form.triggerSubmit();
   }
@@ -77,8 +72,6 @@ export class EmailComponent {
   public keydown(event: KeyboardEvent): void {
     this.password = '';
     if (event.code === 'Tab') {
-      console.log('Tab key pressed');
-      console.log('Tab Date.now()', Date.now());
       this.form.triggerSubmit();
     }
   }
