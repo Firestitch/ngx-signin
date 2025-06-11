@@ -19,12 +19,14 @@
         type="submit">
       Verify
     </button>
-    <button
-        mat-button
-        [fs2faVerificationResend]="verification"
-        type="button">
-      Resend
-    </button>
+    @if (verificationMethod?.type !== 'app') {
+      <button
+          mat-button
+          [fs2faVerificationResend]="verification"
+          type="button">
+        Resend
+      </button>
+    }
     <button
         mat-button
         type="button"
