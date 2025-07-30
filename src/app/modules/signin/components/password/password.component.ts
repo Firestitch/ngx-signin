@@ -7,44 +7,45 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+import { MatAnchor, MatButton } from '@angular/material/button';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
 
 import { IFsVerificationMethod } from '@firestitch/2fa';
 import { FsAutoFocusDirective, FsCommonModule } from '@firestitch/common';
 import { FsFormDirective, FsFormModule } from '@firestitch/form';
+import { FsPasswordModule } from '@firestitch/password';
 
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { signinRequiresVerification } from '../../helpers';
-import { SigninService } from '../../services';
-import { FormsModule } from '@angular/forms';
-import { MatIcon } from '@angular/material/icon';
-import { MatAnchor, MatButton } from '@angular/material/button';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
-import { FsPasswordModule } from '@firestitch/password';
 import { StackedButtonsComponent } from '../../modules/stacked-buttons/components/stacked-buttons/stacked-buttons.component';
+import { SigninService } from '../../services';
 
 
 @Component({
-    selector: 'app-password',
-    templateUrl: './password.component.html',
-    styleUrls: ['./password.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [
-        FormsModule,
-        FsFormModule,
-        MatIcon,
-        MatAnchor,
-        MatFormField,
-        MatLabel,
-        MatInput,
-        FsPasswordModule,
-        FsCommonModule,
-        StackedButtonsComponent,
-        MatButton,
-    ],
+  selector: 'app-password',
+  templateUrl: './password.component.html',
+  styleUrls: ['./password.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    FormsModule,
+    FsFormModule,
+    MatIcon,
+    MatAnchor,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    FsPasswordModule,
+    FsCommonModule,
+    StackedButtonsComponent,
+    MatButton,
+  ],
 })
 export class PasswordComponent implements AfterContentInit {
 
