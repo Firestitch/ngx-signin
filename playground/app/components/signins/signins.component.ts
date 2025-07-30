@@ -6,13 +6,16 @@ import { ISignin, SigninState } from '@firestitch/signin';
 import { of } from 'rxjs';
 
 import { SigninVerificationCodeState } from 'src/app/enums/signin-verification-code-state.enum';
+import { FsSigninsComponent } from '../../../../src/app/modules/signins/components/signins/signins.component';
 
 
 @Component({
-  selector: 'app-signins',
-  templateUrl: './signins.component.html',
-  styleUrls: ['./signins.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-signins',
+    templateUrl: './signins.component.html',
+    styleUrls: ['./signins.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [FsSigninsComponent],
 })
 export class SigninsComponent implements OnInit {
 

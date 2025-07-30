@@ -5,10 +5,11 @@ import {
 
 
 @Component({
-  selector: 'app-stacked-buttons',
-  templateUrl: './stacked-buttons.component.html',
-  styleUrls: ['./stacked-buttons.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-stacked-buttons',
+    templateUrl: './stacked-buttons.component.html',
+    styleUrls: ['./stacked-buttons.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
 })
 export class StackedButtonsComponent{
 }

@@ -7,16 +7,14 @@ import { PasswordResetComponent } from './components';
 
 
 @NgModule({
-  imports: [
-    FsPasswordResetModule,
-  ],
-  declarations: [
-    PasswordResetComponent,
-  ],
-  exports: [
-    PasswordResetComponent,
-  ],
-  providers: [PasswordData],
+    imports: [
+        FsPasswordResetModule,
+        PasswordResetComponent,
+    ],
+    exports: [
+        PasswordResetComponent,
+    ],
+    providers: [PasswordData],
 })
 export class PasswordResetModule {
 }

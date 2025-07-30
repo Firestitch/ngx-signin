@@ -16,26 +16,22 @@ import { FsSigninsComponent } from './components/signins/signins.component';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-
-    MatIconModule,
-    MatTooltipModule,
-
-    FsListModule,
-    FsDateModule,
-    FsCountryModule,
-    FsDeviceModule,
-    FsBadgeModule,
-    FsIpModule,
-    FsPopoverModule,
-  ],
-  exports: [
-    FsSigninsComponent,
-  ],
-  declarations: [
-    FsSigninsComponent,
-  ],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        MatTooltipModule,
+        FsListModule,
+        FsDateModule,
+        FsCountryModule,
+        FsDeviceModule,
+        FsBadgeModule,
+        FsIpModule,
+        FsPopoverModule,
+        FsSigninsComponent,
+    ],
+    exports: [
+        FsSigninsComponent,
+    ],
 })
 export class FsSigninsModule {
   static forRoot(): ModuleWithProviders<FsSigninsModule> {

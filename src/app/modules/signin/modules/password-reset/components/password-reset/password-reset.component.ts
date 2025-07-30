@@ -14,13 +14,16 @@ import { HttpContext } from '@angular/common/http';
 
 import { SigninService } from '../../../../services/signin.service';
 import { PasswordData } from '../../data';
+import { FsPasswordResetModule } from '@firestitch/password-reset';
 
 
 @Component({
-  selector: 'app-password-reset',
-  templateUrl: './password-reset.component.html',
-  styleUrls: ['./password-reset.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-password-reset',
+    templateUrl: './password-reset.component.html',
+    styleUrls: ['./password-reset.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [FsPasswordResetModule],
 })
 export class PasswordResetComponent {
 

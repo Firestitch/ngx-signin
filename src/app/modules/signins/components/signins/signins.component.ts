@@ -12,7 +12,7 @@ import {
 import { FsApi } from '@firestitch/api';
 import { index } from '@firestitch/common';
 import { IFilterConfigItem, ItemType } from '@firestitch/filter';
-import { FsListComponent, FsListConfig } from '@firestitch/list';
+import { FsListComponent, FsListConfig, FsListModule } from '@firestitch/list';
 import { FsPrompt } from '@firestitch/prompt';
 
 import { Subject } from 'rxjs';
@@ -20,13 +20,29 @@ import { map, switchMap, takeUntil } from 'rxjs/operators';
 
 import { SigninStates } from '../../../../consts/signin-states.const';
 import { SigninVerificationCodeStates } from '../../../../consts/signin-verification-code-states.const';
+import { FsBadgeModule } from '@firestitch/badge';
+import { NgTemplateOutlet } from '@angular/common';
+import { MatTooltip } from '@angular/material/tooltip';
+import { FsDeviceModule } from '@firestitch/device';
+import { FsIpModule } from '@firestitch/ip';
+import { FsDateModule } from '@firestitch/date';
 
 
 @Component({
-  selector: 'fs-signins',
-  templateUrl: './signins.component.html',
-  styleUrls: ['./signins.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'fs-signins',
+    templateUrl: './signins.component.html',
+    styleUrls: ['./signins.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+    FsListModule,
+    FsBadgeModule,
+    NgTemplateOutlet,
+    MatTooltip,
+    FsDeviceModule,
+    FsIpModule,
+    FsDateModule
+],
 })
 export class FsSigninsComponent implements OnInit, OnDestroy {
 

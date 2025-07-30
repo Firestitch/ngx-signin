@@ -7,8 +7,8 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { Fs2faVerificationComponent, IFsVerificationMethod } from '@firestitch/2fa';
-import { FsFormDirective } from '@firestitch/form';
+import { Fs2faVerificationComponent, IFsVerificationMethod, Fs2faVerificationModule } from '@firestitch/2fa';
+import { FsFormDirective, FsFormModule } from '@firestitch/form';
 import { FsMessage } from '@firestitch/message';
 
 import { Observable, throwError } from 'rxjs';
@@ -16,13 +16,24 @@ import { catchError, tap } from 'rxjs/operators';
 
 import { SigninService } from '../../../../services';
 import { VerificationData } from '../../data';
+import { FormsModule } from '@angular/forms';
+import { StackedButtonsComponent } from '../../../stacked-buttons/components/stacked-buttons/stacked-buttons.component';
+import { MatButton } from '@angular/material/button';
 
 
 @Component({
-  selector: 'app-two-factor-verification',
-  templateUrl: './two-factor-verification.component.html',
-  styleUrls: ['./two-factor-verification.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-two-factor-verification',
+    templateUrl: './two-factor-verification.component.html',
+    styleUrls: ['./two-factor-verification.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        FormsModule,
+        FsFormModule,
+        Fs2faVerificationModule,
+        StackedButtonsComponent,
+        MatButton,
+    ],
 })
 export class TwoFactorVerificationComponent implements OnInit {
 

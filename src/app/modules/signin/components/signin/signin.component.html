@@ -1,22 +1,23 @@
-<ng-container [ngSwitch]="mode">
-  <ng-container *ngSwitchCase="'signin'">
-    <ng-container *ngIf="signinTitle">
+
+@switch (mode) {
+  @case ('signin') {
+    @if (signinTitle) {
       <div class="title signin-title">
         {{ signinTitle }}
       </div>
-      <ng-container *ngIf="signinSubtitle">
+      @if (signinSubtitle) {
         <p class="subheading">
           {{ signinSubtitle }}
         </p>
-      </ng-container>
-    </ng-container>
+      }
+    }
     <app-credentials
       [email]="email"
       (verificationRequired)="verificationRequired($event)"
       (passwordReset)="passwordResetMode($event)">
     </app-credentials>
-  </ng-container>
-  <ng-container *ngSwitchCase="'two-factor'">
+  }
+  @case ('two-factor') {
     <div class="title two-factor-title">
       2-step verification
     </div>
@@ -24,8 +25,8 @@
       [verificationMethod]="verificationMethod"
       (cancelled)="signinMode()">
     </app-two-factor-verification>
-  </ng-container>
-  <ng-container *ngSwitchCase="'password-reset'">
+  }
+  @case ('password-reset') {
     <div class="title password-reset-title">
       {{ passwordResetTitle }}
     </div>
@@ -39,5 +40,5 @@
       (subtitleChange)="passwordResetSubtitle=$event"
       (cancelled)="signinMode()">
     </app-password-reset>
-  </ng-container>
-</ng-container>
+  }
+}

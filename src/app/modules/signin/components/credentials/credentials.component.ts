@@ -1,3 +1,4 @@
+
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -16,7 +17,10 @@ import { FsSocialSignin } from '@firestitch/social-signin';
 
 import { Subject } from 'rxjs';
 
+import { SocialSigninComponent } from '../../modules/social-signin/components/social-signin/social-signin.component';
 import { SigninService } from '../../services';
+import { EmailComponent } from '../email/email.component';
+import { PasswordComponent } from '../password/password.component';
 
 
 @Component({
@@ -24,6 +28,12 @@ import { SigninService } from '../../services';
   templateUrl: './credentials.component.html',
   styleUrls: ['./credentials.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    EmailComponent,
+    SocialSigninComponent,
+    PasswordComponent
+],
 })
 export class CredentialsComponent implements OnInit, OnDestroy {
 

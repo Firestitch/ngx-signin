@@ -2,7 +2,6 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 import { FS_API_REQUEST_INTERCEPTOR, FsApiModule } from '@firestitch/api';
@@ -24,9 +23,7 @@ import { AppComponent } from './app.component';
 import {
   ExamplesComponent, SigninContainerComponent,
 } from './components';
-import { SigninsComponent } from './components/signins';
 import { ApiInterceptorFactory } from './interceptors';
-import { AppMaterialModule } from './material.module';
 import { PaygroundRoutingModule } from './playground-routing.module';
 
 
@@ -37,7 +34,6 @@ import { PaygroundRoutingModule } from './playground-routing.module';
     BrowserModule,
     FsSigninsModule,
     BrowserAnimationsModule,
-    AppMaterialModule,
     FormsModule,
     FsLabelModule,
     FsStoreModule,
@@ -54,9 +50,7 @@ import { PaygroundRoutingModule } from './playground-routing.module';
           showSocialSignins: true,
           beforeProcessSignin: (response) => of(response),
           processSignin: (response, redirect) => of(response, redirect)
-            .pipe(
-              tap(() => message.success('Successfully signed in')),
-            ),
+            .pipe(tap(() => message.success('Successfully signed in'))),
           signinMeta: () => of({
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
           }),
@@ -66,6 +60,8 @@ import { PaygroundRoutingModule } from './playground-routing.module';
       },
       deps: [FsMessage],
     }),
+    ExamplesComponent,
+    SigninContainerComponent,
   ],
   providers: [
     {
@@ -95,12 +91,7 @@ import { PaygroundRoutingModule } from './playground-routing.module';
       useFactory: ApiInterceptorFactory,
     },
   ],
-  declarations: [
-    AppComponent,
-    ExamplesComponent,
-    SigninsComponent,
-    SigninContainerComponent,
-  ],
+  declarations: [AppComponent],
 })
 export class PlaygroundModule {
 }

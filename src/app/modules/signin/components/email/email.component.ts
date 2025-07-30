@@ -6,13 +6,21 @@ import {
   Input, Output,
   ViewChild,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
+import { MatButton } from '@angular/material/button';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 
 import { IFsVerificationMethod } from '@firestitch/2fa';
-import { FsFormDirective } from '@firestitch/form';
+import { FsCommonModule } from '@firestitch/common';
+import { FsFormDirective, FsFormModule } from '@firestitch/form';
 
 import { Observable, of, tap } from 'rxjs';
+
+
+import { StackedButtonsComponent } from '../../modules/stacked-buttons/components/stacked-buttons/stacked-buttons.component';
 
 
 @Component({
@@ -20,6 +28,18 @@ import { Observable, of, tap } from 'rxjs';
   templateUrl: './email.component.html',
   styleUrls: ['./email.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    FormsModule,
+    FsFormModule,
+    MatFormField,
+    MatLabel,
+    MatIcon,
+    MatInput,
+    FsCommonModule,
+    StackedButtonsComponent,
+    MatButton,
+  ],
 })
 export class EmailComponent {
 
@@ -48,10 +68,7 @@ export class EmailComponent {
     return of(true)
       .pipe(
         tap(() => {
-          // Delay 2 seconds to prevent password autofill from browser on page load
-          if((Date.now() - this.initTimestamp) > (2 * 1000)) {
-            this.validated.emit({ email: this.email, password: this.password });
-          }
+          this.validated.emit({ email: this.email, password: this.password });
         }),
       );   
   };

@@ -12,13 +12,16 @@ import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { SocialSigninService } from '../../../../services';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 
 @Component({
-  selector: 'app-social-processing',
-  templateUrl: './social-processing.component.html',
-  styleUrls: ['./social-processing.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-social-processing',
+    templateUrl: './social-processing.component.html',
+    styleUrls: ['./social-processing.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [MatProgressSpinner],
 })
 export class SocialProcessingComponent implements OnInit {
 

@@ -1,4 +1,4 @@
-<ng-container *ngIf="show">
+@if (show) {
   <div class="or-signin">
     or sign in with
   </div>
@@ -6,4 +6,4 @@
     [redirectUri]="redirectUri"
     [width]="'100%'">
   </fs-social-signin-buttons>
-</ng-container>
+}

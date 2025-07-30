@@ -1,3 +1,4 @@
+
 import {
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
@@ -14,7 +15,10 @@ import { catchError } from 'rxjs/operators';
 
 import { signinRequiresVerification } from '../../helpers';
 import { SigninConfig } from '../../interfaces';
+import { PasswordResetComponent } from '../../modules/password-reset/components/password-reset/password-reset.component';
+import { TwoFactorVerificationComponent } from '../../modules/two-factor-verification/components/two-factor-verification/two-factor-verification.component';
 import { SigninService } from '../../services';
+import { CredentialsComponent } from '../credentials/credentials.component';
 
 
 @Component({
@@ -22,6 +26,12 @@ import { SigninService } from '../../services';
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    CredentialsComponent,
+    TwoFactorVerificationComponent,
+    PasswordResetComponent
+],
 })
 export class SigninComponent implements OnInit {
 
