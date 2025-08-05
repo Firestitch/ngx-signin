@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 
 import { DisplayApiError } from '@firestitch/api';
+import { FsPasswordResetModule } from '@firestitch/password-reset';
 
 import { Observable } from 'rxjs';
 
@@ -14,16 +15,16 @@ import { HttpContext } from '@angular/common/http';
 
 import { SigninService } from '../../../../services/signin.service';
 import { PasswordData } from '../../data';
-import { FsPasswordResetModule } from '@firestitch/password-reset';
 
 
 @Component({
-    selector: 'app-password-reset',
-    templateUrl: './password-reset.component.html',
-    styleUrls: ['./password-reset.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [FsPasswordResetModule],
+  selector: 'app-password-reset',
+  templateUrl: './password-reset.component.html',
+  styleUrls: ['./password-reset.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [FsPasswordResetModule],
+  providers: [PasswordData],
 })
 export class PasswordResetComponent {
 
