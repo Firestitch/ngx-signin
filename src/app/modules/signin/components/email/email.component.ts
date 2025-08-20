@@ -62,13 +62,17 @@ export class EmailComponent {
   @Output() public cleared = new EventEmitter<any>();
 
   public password: string;
-  public initTimestamp = Date.now();
+  public initTime = Date.now();
+  public emailChangeTime = 0;
   
   public validateEmail = (): Observable<any> => {
     return of(true)
       .pipe(
         tap(() => {
-          this.validated.emit({ email: this.email, password: this.password });
+          //Delay 2 seconds to prevent password autofill from browser on page load
+          if((this.emailChangeTime - this.initTime) > (1 * 1000)) {
+            this.validated.emit({ email: this.email, password: this.password });
+          }
         }),
       );   
   };
@@ -78,7 +82,8 @@ export class EmailComponent {
   };
 
   public emailChange(e): void {
-    this.email = e.target.value;      
+    this.emailChangeTime = Date.now();
+    this.email = e.target.value;
   }
 
   public passwordChange(e): void {
