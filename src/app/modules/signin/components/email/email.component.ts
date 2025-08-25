@@ -63,14 +63,13 @@ export class EmailComponent {
 
   public password: string;
   public initTime = Date.now();
-  public emailChangeTime = 0;
   
   public validateEmail = (): Observable<any> => {
     return of(true)
       .pipe(
         tap(() => {
-          //Delay 2 seconds to prevent password autofill from browser on page load
-          if((this.emailChangeTime - this.initTime) > (1 * 1000)) {
+          //Delay 1 seconds to prevent password autofill from browser on page load
+          if((Date.now() - this.initTime) > (1 * 1000)) {
             this.validated.emit({ email: this.email, password: this.password });
           }
         }),
@@ -82,7 +81,6 @@ export class EmailComponent {
   };
 
   public emailChange(e): void {
-    this.emailChangeTime = Date.now();
     this.email = e.target.value;
   }
 
