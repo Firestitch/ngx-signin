@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { FsMessage, MessageMode } from '@firestitch/message';
@@ -24,14 +19,12 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
     imports: [MatProgressSpinner],
 })
 export class SocialProcessingComponent implements OnInit {
+  private _socialSigninService = inject(SocialSigninService);
+  private _message = inject(FsMessage);
+  private _router = inject(Router);
+
 
   @Input() public errorUrl;
-
-  constructor(
-    private _socialSigninService: SocialSigninService,
-    private _message: FsMessage,
-    private _router: Router,
-  ) { }
 
   public ngOnInit(): void {
     this._socialSigninService.processOAuthResponse()

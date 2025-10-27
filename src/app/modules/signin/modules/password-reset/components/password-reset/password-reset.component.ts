@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 
 import { DisplayApiError } from '@firestitch/api';
 import { FsPasswordResetModule } from '@firestitch/password-reset';
@@ -27,6 +21,9 @@ import { PasswordData } from '../../data';
   providers: [PasswordData],
 })
 export class PasswordResetComponent {
+  private _passwordData = inject(PasswordData);
+  private _signService = inject(SigninService);
+
 
   @Input() public email;
 
@@ -38,11 +35,6 @@ export class PasswordResetComponent {
     password: string;
     code: string;
   }>();
-
-  constructor(
-    private _passwordData: PasswordData,
-    private _signService: SigninService,
-  ) { }
 
   public requestCode = (email: string): Observable<any> => {
     return this._passwordData.request({ email });

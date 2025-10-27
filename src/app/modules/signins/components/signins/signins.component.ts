@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, inject } from '@angular/core';
 
 import { FsApi } from '@firestitch/api';
 import { index } from '@firestitch/common';
@@ -45,6 +36,9 @@ import { FsDateModule } from '@firestitch/date';
 ],
 })
 export class FsSigninsComponent implements OnInit, OnDestroy {
+  private _prompt = inject(FsPrompt);
+  private _api = inject(FsApi);
+
 
   @Input()
   public appendFilters: IFilterConfigItem[];
@@ -69,11 +63,6 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
   public SigninVerificationCodeStates = index(SigninVerificationCodeStates, 'value', 'name');
 
   private _destroy$ = new Subject();
-
-  constructor(
-    private _prompt: FsPrompt,
-    private _api: FsApi,
-  ) { }
 
   public ngOnInit(): void {
     this._initListConfig();

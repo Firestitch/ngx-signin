@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 
 import { DisplayApiError, FsApi } from '@firestitch/api';
 
@@ -15,15 +15,15 @@ import { SigninConfig } from '../interfaces';
 
 @Injectable()
 export class SigninService {
+  protected _injector = inject(Injector);
+
 
   private _redirect: string;
   private _signinRootConfig: SigninConfig;
   private _signinProviderConfig: SigninConfig;
   private _signinConfig: SigninConfig = {};
 
-  constructor(
-    protected _injector: Injector,
-  ) {
+  constructor() {
     this._signinRootConfig = this._injector.get(SIGNIN_CONFIG_ROOT, null) || {};
     this._signinProviderConfig = this._injector.get(SIGNIN_CONFIG, null) || {};
   }

@@ -36,6 +36,10 @@ import { PasswordComponent } from '../password/password.component';
 ],
 })
 export class CredentialsComponent implements OnInit, OnDestroy {
+  private _signinService = inject(SigninService);
+  private _route = inject(ActivatedRoute);
+  private _cdRef = inject(ChangeDetectorRef);
+
 
   @Input() public email;
 
@@ -48,12 +52,6 @@ export class CredentialsComponent implements OnInit, OnDestroy {
 
   private _destroy$ = new Subject();
   private _socialSignin = inject(FsSocialSignin);
-
-  constructor(
-    private _signinService: SigninService,
-    private _route: ActivatedRoute,
-    private _cdRef: ChangeDetectorRef,
-  ) { }
 
   public ngOnInit(): void {
     if (!this.email) {

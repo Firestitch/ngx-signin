@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { IFsVerificationMethod } from '@firestitch/2fa';
 import { FsApi } from '@firestitch/api';
@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class VerificationData<T = any> {
+  private _api = inject(FsApi);
 
-  constructor(private _api: FsApi) { }
 
   public resend(): Observable<T> {
     return this._api.post('verification/resend');

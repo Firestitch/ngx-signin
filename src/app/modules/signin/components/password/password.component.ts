@@ -1,12 +1,4 @@
-import {
-  AfterContentInit,
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { MatAnchor, MatButton } from '@angular/material/button';
@@ -48,6 +40,8 @@ import { SigninService } from '../../services';
   ],
 })
 export class PasswordComponent implements AfterContentInit {
+  private _signService = inject(SigninService);
+
 
   @ViewChild(FsAutoFocusDirective, { static: true })
   public autofocus: FsAutoFocusDirective;
@@ -63,10 +57,6 @@ export class PasswordComponent implements AfterContentInit {
   @Output() public verificationRequired = new EventEmitter<IFsVerificationMethod>();
   @Output() public emailChange = new EventEmitter<any>();
   @Output() public passwordReset = new EventEmitter<any>();
-
-  constructor(
-    private _signService: SigninService,
-  ) { }
 
   public ngAfterContentInit(): void {
     if(this.email && this.password) {

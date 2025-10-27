@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter, Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
 
 import { Fs2faVerificationComponent, IFsVerificationMethod, Fs2faVerificationModule } from '@firestitch/2fa';
 import { FsFormDirective, FsFormModule } from '@firestitch/form';
@@ -36,6 +29,10 @@ import { MatButton } from '@angular/material/button';
     ],
 })
 export class TwoFactorVerificationComponent implements OnInit {
+  private _signService = inject(SigninService);
+  private _verificationData = inject(VerificationData);
+  private _message = inject(FsMessage);
+
 
   @ViewChild(FsFormDirective)
   public form: FsFormDirective;
@@ -50,12 +47,6 @@ export class TwoFactorVerificationComponent implements OnInit {
 
   public trustedDeviceExpiryDays;
   public verificationCodeLength;
-
-  constructor(
-    private _signService: SigninService,
-    private _verificationData: VerificationData,
-    private _message: FsMessage,
-  ) { }
 
   public ngOnInit(): void {
     this.trustedDeviceExpiryDays = this._signService.trustedDeviceExpiryDays;

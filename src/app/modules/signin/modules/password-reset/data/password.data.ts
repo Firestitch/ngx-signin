@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { FsApi, RequestConfig } from '@firestitch/api';
 
@@ -7,11 +7,8 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class PasswordData {
+  private _api = inject(FsApi);
 
-  constructor(
-    private _api: FsApi,
-  ) {
-  }
 
   public reset(data, options?: RequestConfig): Observable<any> {
     return this._api.post('password/reset', data, options);

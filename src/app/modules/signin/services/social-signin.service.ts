@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { RequestConfig } from '@firestitch/api';
 import { FsSocialSignin, Provider } from '@firestitch/social-signin';
@@ -11,12 +11,6 @@ import { SigninService } from './signin.service';
 
 @Injectable()
 export class SocialSigninService extends SigninService {
-
-  constructor(
-    protected _injector: Injector,
-  ) {
-    super(_injector);
-  }
 
   public siginFacebook(
     code: string,
