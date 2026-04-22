@@ -1,11 +1,11 @@
 <fs-list [config]="listConfig">
   <fs-list-column
-    title="Account"
-    [show]="!accountId"
-    class="col-account">
+      title="Account"
+      [show]="!accountId"
+      class="col-account">
     <ng-template
-      fs-list-cell
-      let-row="row">
+        fs-list-cell
+        let-row="row">
       <div class="row">
         <fs-badge
           [image]="row.account?.avatar?.small"
@@ -32,13 +32,13 @@
   </fs-list-column>
   <fs-list-column title="Status">
     <ng-template
-      fs-list-cell
-      let-row="row">
+        fs-list-cell
+        let-row="row">
       {{ SigninStates[row.state] }}
       @if (row.verificationCode) {
         <div
-          class="small"
-          [matTooltip]="'Recipient: ' + row.verificationCode.recipient">
+            class="small"
+            [matTooltip]="'Recipient: ' + row.verificationCode.recipient">
           {{ row.verificationCode.message }}
         </div>
       } @else {
@@ -50,32 +50,32 @@
   </fs-list-column>
   <fs-list-column title="Method">
     <ng-template
-      fs-list-cell
-      class="col-method"
-      let-row="row">
+        fs-list-cell
+        class="col-method"
+        let-row="row">
       <span class="method">
-        {{ row.method }}
+        {{ SigninMethods[row.method] }}
       </span>
     </ng-template>
   </fs-list-column>
   <fs-list-column title="Platform">
     <ng-template
-      fs-list-cell
-      let-row="row">
+        fs-list-cell
+        let-row="row">
       @if (row.device?.platform) {
         <fs-device-platform
           [type]="row.device.platform"
-          [showName]="true">
+          [showName]="false">
         </fs-device-platform>
       }
     </ng-template>
   </fs-list-column>
   <fs-list-column
-    title="Device"
-    align="center">
+      title="Device"
+      align="center">
     <ng-template
-      fs-list-cell
-      let-row="row">
+        fs-list-cell
+        let-row="row">
       @if (row.device) {
         <fs-device-os
           [type]="row.device.type"
@@ -88,21 +88,21 @@
   </fs-list-column>
   <fs-list-column title="Browser">
     <ng-template
-      fs-list-cell
-      let-row="row">
+        fs-list-cell
+        let-row="row">
       @if (row.device) {
         <fs-device-browser
           [type]="row.device.browserType"
           [version]="row.device.browserVersion"
-          [showName]="true">
+          [showName]="false">
         </fs-device-browser>
       }
     </ng-template>
   </fs-list-column>
   <fs-list-column title="Location">
     <ng-template
-      fs-list-cell
-      let-row="row">
+        fs-list-cell
+        let-row="row">
       @if (row.ip) {
         <fs-ip
           [country]="row.ip.country"
@@ -115,12 +115,12 @@
     </ng-template>
   </fs-list-column>
   <fs-list-column
-    name="create_date"
-    [sortable]="true"
-    title="Date">
+      name="create_date"
+      [sortable]="true"
+      title="Date">
     <ng-template
-      fs-list-cell
-      let-row="row">
+        fs-list-cell
+        let-row="row">
       {{ row.createDate | fsDateFormat: 'full-date-time' }}
     </ng-template>
   </fs-list-column>

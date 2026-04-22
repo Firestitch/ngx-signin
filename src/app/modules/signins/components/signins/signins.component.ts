@@ -16,6 +16,7 @@ import { FsPrompt } from '@firestitch/prompt';
 import { Subject } from 'rxjs';
 import { map, switchMap, takeUntil } from 'rxjs/operators';
 
+import { SigninMethods } from '../../../../consts/signin-methods.const';
 import { SigninStates } from '../../../../consts/signin-states.const';
 import { SigninVerificationCodeStates } from '../../../../consts/signin-verification-code-states.const';
 
@@ -59,6 +60,7 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
   public listConfig: FsListConfig;
   public SigninStates = index(SigninStates, 'value', 'name');
   public SigninVerificationCodeStates = index(SigninVerificationCodeStates, 'value', 'name');
+  public SigninMethods = index(SigninMethods, 'value', 'name');
 
   private _destroy$ = new Subject();
   private _prompt = inject(FsPrompt);
