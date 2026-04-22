@@ -1,8 +1,15 @@
+import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, inject } from '@angular/core';
 
+import { MatTooltip } from '@angular/material/tooltip';
+
 import { FsApi } from '@firestitch/api';
+import { FsBadgeModule } from '@firestitch/badge';
 import { index } from '@firestitch/common';
+import { FsDateModule } from '@firestitch/date';
+import { DevicePlatforms, FsDeviceModule } from '@firestitch/device';
 import { IFilterConfigItem, ItemType } from '@firestitch/filter';
+import { FsIpModule } from '@firestitch/ip';
 import { FsListComponent, FsListConfig, FsListModule } from '@firestitch/list';
 import { FsPrompt } from '@firestitch/prompt';
 
@@ -11,34 +18,25 @@ import { map, switchMap, takeUntil } from 'rxjs/operators';
 
 import { SigninStates } from '../../../../consts/signin-states.const';
 import { SigninVerificationCodeStates } from '../../../../consts/signin-verification-code-states.const';
-import { FsBadgeModule } from '@firestitch/badge';
-import { NgTemplateOutlet } from '@angular/common';
-import { MatTooltip } from '@angular/material/tooltip';
-import { FsDeviceModule } from '@firestitch/device';
-import { FsIpModule } from '@firestitch/ip';
-import { FsDateModule } from '@firestitch/date';
 
 
 @Component({
-    selector: 'fs-signins',
-    templateUrl: './signins.component.html',
-    styleUrls: ['./signins.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [
+  selector: 'fs-signins',
+  templateUrl: './signins.component.html',
+  styleUrls: ['./signins.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
     FsListModule,
     FsBadgeModule,
     NgTemplateOutlet,
     MatTooltip,
     FsDeviceModule,
     FsIpModule,
-    FsDateModule
-],
+    FsDateModule,
+  ],
 })
 export class FsSigninsComponent implements OnInit, OnDestroy {
-  private _prompt = inject(FsPrompt);
-  private _api = inject(FsApi);
-
 
   @Input()
   public appendFilters: IFilterConfigItem[];
@@ -63,6 +61,8 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
   public SigninVerificationCodeStates = index(SigninVerificationCodeStates, 'value', 'name');
 
   private _destroy$ = new Subject();
+  private _prompt = inject(FsPrompt);
+  private _api = inject(FsApi);
 
   public ngOnInit(): void {
     this._initListConfig();
@@ -101,6 +101,16 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
           multiple: true,
           values: SigninStates,
           label: 'Status',
+        },
+        {
+          name: 'platform',
+          type: ItemType.Select,
+          multiple: true,
+          values: DevicePlatforms.map((platform) => ({
+            name: platform.name,
+            value: platform.type,
+          })),
+          label: 'Platform',
         },
         ...(this.appendFilters || []),
       ],

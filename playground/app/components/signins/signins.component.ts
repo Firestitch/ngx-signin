@@ -1,21 +1,22 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { DeviceBrowser, DeviceOs, DeviceType } from '@firestitch/device';
+import { DeviceBrowser, DeviceOs, DevicePlatform, DeviceType } from '@firestitch/device';
 import { ISignin, SigninState } from '@firestitch/signin';
 
 import { of } from 'rxjs';
 
 import { SigninVerificationCodeState } from 'src/app/enums/signin-verification-code-state.enum';
+
 import { FsSigninsComponent } from '../../../../src/app/modules/signins/components/signins/signins.component';
 
 
 @Component({
-    selector: 'app-signins',
-    templateUrl: './signins.component.html',
-    styleUrls: ['./signins.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [FsSigninsComponent],
+  selector: 'app-signins',
+  templateUrl: './signins.component.html',
+  styleUrls: ['./signins.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [FsSigninsComponent],
 })
 export class SigninsComponent implements OnInit {
 
@@ -35,6 +36,7 @@ export class SigninsComponent implements OnInit {
           id: Math.random(),
           type: DeviceType.Desktop,
           osType: DeviceOs.Windows,
+          platform: DevicePlatform.Web,
           osVersion: '10.0',
           browserType: DeviceBrowser.Chrome,
           browserVersion: '1.0.0',
@@ -55,6 +57,7 @@ export class SigninsComponent implements OnInit {
         id: Math.random(),
         device: {
           id: Math.random(),
+          platform: DevicePlatform.Android,
           type: DeviceType.Mobile,
           osType: DeviceOs.Android,
           osVersion: '10.0',

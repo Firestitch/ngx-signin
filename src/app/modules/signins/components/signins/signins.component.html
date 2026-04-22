@@ -58,6 +58,18 @@
       </span>
     </ng-template>
   </fs-list-column>
+  <fs-list-column title="Platform">
+    <ng-template
+      fs-list-cell
+      let-row="row">
+      @if (row.device?.platform) {
+        <fs-device-platform
+          [type]="row.device.platform"
+          [showName]="true">
+        </fs-device-platform>
+      }
+    </ng-template>
+  </fs-list-column>
   <fs-list-column
     title="Device"
     align="center">

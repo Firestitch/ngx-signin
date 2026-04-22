@@ -2,7 +2,7 @@
   "name": "@firestitch/signin",
   "title": "Signin",
   "description": "@firestitch/signin",
-  "version": "18.0.26",
+  "version": "18.0.27",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-signin"
@@ -54,7 +54,7 @@
     "@firestitch/country": "^18.0.0",
     "@firestitch/date": "^18.0.4",
     "@firestitch/datepicker": "^18.0.7",
-    "@firestitch/device": "^18.0.0",
+    "@firestitch/device": "^18.0.2",
     "@firestitch/dialog": "^18.0.17",
     "@firestitch/drawer": "^18.0.1",
     "@firestitch/example": "^18.0.7",
