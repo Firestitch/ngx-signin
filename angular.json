@@ -51,7 +51,7 @@
               "highlight.js",
               "qrcode",
               "date-fns-tz",
-              "crypto-js"
+              "crypto-es"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

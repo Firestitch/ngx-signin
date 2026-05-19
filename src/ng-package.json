@@ -1,6 +1,9 @@
 {
   "$schema": "../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../package",
+  "allowedNonPeerDependencies": [
+    "crypto-es"
+  ],
   "lib": {
     "entryFile": "public_api.ts"
   }

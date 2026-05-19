@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { HttpContext } from '@angular/common/http';
-import * as CryptoJS from 'crypto-js';
+import { AES } from 'crypto-es';
 import { formatInTimeZone } from 'date-fns-tz';
 
 import { SIGNIN_CONFIG, SIGNIN_CONFIG_ROOT } from '../injectors';
@@ -158,7 +158,7 @@ export class SigninService {
           const data = JSON.stringify(meta);
           const passcode = formatInTimeZone(new Date(), 'UTC', 'yyyy-MM-dd');
 
-          return CryptoJS.AES.encrypt(data, passcode).toString();    
+          return AES.encrypt(data, passcode).toString();
         }),
       );
   }
