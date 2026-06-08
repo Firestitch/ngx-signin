@@ -1,0 +1,36 @@
+.one-time-code {
+  fs-code-input {
+    margin-bottom: 15px;
+  }
+
+  .subheading {
+    text-align: center;
+  }
+}
+
+:host ::ng-deep {
+  .label-icon {
+    display: inline-flex;
+  }
+}
+
+.email {
+  font-size: 110%;
+  display: flex;
+  align-items: center;
+  margin: 0 0 15px;
+  justify-content: center;
+
+  mat-icon {
+    margin-right: 1px;
+    transform: scale(.7);
+    color: #575757;
+    flex-shrink: 0;
+  }
+
+  .change {
+    margin-left: 4px;
+    font-size: smaller;
+    padding-left: 10px;
+  }
+}

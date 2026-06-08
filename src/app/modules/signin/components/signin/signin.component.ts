@@ -19,6 +19,7 @@ import { PasswordResetComponent } from '../../modules/password-reset/components/
 import { TwoFactorVerificationComponent } from '../../modules/two-factor-verification/components/two-factor-verification/two-factor-verification.component';
 import { SigninService } from '../../services';
 import { CredentialsComponent } from '../credentials/credentials.component';
+import { OneTimeCodeComponent } from '../one-time-code/one-time-code.component';
 
 
 @Component({
@@ -30,7 +31,8 @@ import { CredentialsComponent } from '../credentials/credentials.component';
   imports: [
     CredentialsComponent,
     TwoFactorVerificationComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    OneTimeCodeComponent
 ],
 })
 export class SigninComponent implements OnInit {
@@ -39,7 +41,7 @@ export class SigninComponent implements OnInit {
   @Input() public redirect: string;
   @Input() public email: string;
 
-  public mode: 'signin' | 'two-factor' | 'password-reset' = 'signin';
+  public mode: 'signin' | 'two-factor' | 'password-reset' | 'one-time-code' = 'signin';
   public verificationMethod: IFsVerificationMethod;
   public passwordResetTitle: string;
   public passwordResetSubtitle: string;
@@ -77,6 +79,11 @@ export class SigninComponent implements OnInit {
     this._switchMode('signin');
   }
 
+  public oneTimePasswordMode(email: string): void {
+    this.email = email;
+    this._switchMode('one-time-code');
+  }
+
   public passwordResetMode(email): void {
     this.email = email;
     this._switchMode('password-reset');
@@ -101,7 +108,7 @@ export class SigninComponent implements OnInit {
       .subscribe();
   }
 
-  private _switchMode(mode: 'two-factor' | 'signin' | 'password-reset') {
+  private _switchMode(mode: 'two-factor' | 'signin' | 'password-reset' | 'one-time-code') {
     this.mode = mode;
     this._cdRef.markForCheck();
   }

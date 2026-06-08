@@ -14,8 +14,19 @@
     <app-credentials
       [email]="email"
       (verificationRequired)="verificationRequired($event)"
-      (passwordReset)="passwordResetMode($event)">
+      (passwordReset)="passwordResetMode($event)"
+      (oneTimePassword)="oneTimePasswordMode($event)">
     </app-credentials>
+  }
+  @case ('one-time-code') {
+    <div class="title one-time-code-title">
+      Sign in with a code
+    </div>
+    <app-one-time-code
+      [email]="email"
+      (verificationRequired)="verificationRequired($event)"
+      (cancelled)="signinMode()">
+    </app-one-time-code>
   }
   @case ('two-factor') {
     <div class="title two-factor-title">

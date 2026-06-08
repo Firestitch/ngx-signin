@@ -53,8 +53,12 @@ export class SigninService {
     return (this.getConfig('trustedDeviceExpiryDays')) || 0;
   }
 
-  public get showSocialSignins(): boolean { 
+  public get showSocialSignins(): boolean {
     return this.getConfig('showSocialSignins') || false;
+  }
+
+  public get oneTimePassword(): boolean {
+    return this.getConfig('oneTimePassword') || false;
   }
 
   public emailChanged(): Observable<any> {
@@ -135,6 +139,16 @@ export class SigninService {
       email,
     }, {
       key: 'exists',
+    });
+  }
+
+  public signinCode(
+    email: any,
+  ): Observable<boolean> {
+    return this.api.post(this.getConfig('signinCodeUrl', 'auth/signin/code'), {
+      email,
+    }, {
+      key: 'sent',
     });
   }
 

@@ -1,0 +1,56 @@
+<form
+    fsForm
+    [submit]="submit"
+    [confirm]="false">
+  <div class="one-time-code">
+    <div class="email">
+      <mat-icon>
+        mail_outline
+      </mat-icon>
+      <span>
+        {{ email }}
+      </span>
+      <button
+          mat-button
+          [disabled]="form?.submitting"
+          type="button"
+          color="primary"
+          (click)="changeEmail()"
+          class="change">
+        Change
+      </button>
+    </div>
+    <p class="subheading">
+      Enter the {{ codeLength }}-digit code we sent to your email
+    </p>
+    <fs-code-input
+      [codeLength]="codeLength"
+      [(ngModel)]="code"
+      name="code"
+      [isPrevFocusableAfterClearing]="false"
+      (completedLast)="codeCompleted()">
+    </fs-code-input>
+  </div>
+  <app-stacked-buttons>
+    <button
+        mat-flat-button
+        type="submit"
+        name="signin"
+        color="primary">
+      Sign in
+    </button>
+    <button
+        mat-button
+        type="button"
+        [disabled]="resending"
+        (click)="resend()">
+      Resend code
+    </button>
+    <button
+        mat-button
+        type="button"
+        (click)="changeEmail()">
+      Back to sign in
+    </button>
+  </app-stacked-buttons>
+</form>

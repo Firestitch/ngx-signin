@@ -57,6 +57,11 @@ export class PasswordComponent implements AfterContentInit {
   @Output() public verificationRequired = new EventEmitter<IFsVerificationMethod>();
   @Output() public emailChange = new EventEmitter<any>();
   @Output() public passwordReset = new EventEmitter<any>();
+  @Output() public oneTimePassword = new EventEmitter<string>();
+
+  public get oneTimePasswordEnabled(): boolean {
+    return this._signService.oneTimePassword;
+  }
 
   public ngAfterContentInit(): void {
     if(this.email && this.password) {

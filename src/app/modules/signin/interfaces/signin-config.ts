@@ -15,4 +15,6 @@ export interface SigninConfig {
   signinUrl?: string;
   signinVerifyUrl?: string;
   signinExistsUrl?: string;
+  signinCodeUrl?: string;
+  oneTimePassword?: boolean;
 }

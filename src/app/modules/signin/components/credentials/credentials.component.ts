@@ -46,6 +46,7 @@ export class CredentialsComponent implements OnInit, OnDestroy {
   @Output() public signedIn = new EventEmitter<any>();
   @Output() public verificationRequired = new EventEmitter<IFsVerificationMethod>();
   @Output() public passwordReset = new EventEmitter<string>();
+  @Output() public oneTimePassword = new EventEmitter<string>();
 
   public password: string;
   public mode: 'email' | 'password' = 'email';
