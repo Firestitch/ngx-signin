@@ -1,6 +1,14 @@
 .one-time-code {
   fs-code-input {
+    margin-bottom: 5px;
+  }
+
+  .one-time-code-message {
+    text-align: center;
     margin-bottom: 15px;
+    min-height: 18px;
+    color: var(--mat-sys-error, #f44336);
+    font-size: 12px;
   }
 
   .subheading {

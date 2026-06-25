@@ -28,8 +28,13 @@
       [(ngModel)]="code"
       name="code"
       [isPrevFocusableAfterClearing]="false"
+      [required]="true"
+      [validateOnSubmit]="true"
+      [fsFormFunction]="validateCode"
+      [messageSelector]="'.one-time-code-message'"
       (completedLast)="codeCompleted()">
     </fs-code-input>
+    <div class="one-time-code-message"></div>
   </div>
   <app-stacked-buttons>
     <button

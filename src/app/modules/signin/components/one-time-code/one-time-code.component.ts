@@ -94,11 +94,12 @@ export class OneTimeCodeComponent implements OnInit {
         }),
       )
       .subscribe(() => {
+        this._clearCode();
         this._message.success('We sent you a new code');
       });
   }
 
-  public submit = (): Observable<any> => {
+  public validateCode = (): Observable<any> => {
     return this._signService
       .signin(this.email, `${ONE_TIME_PASSWORD_PREFIX}${this.code}`)
       .pipe(
@@ -110,14 +111,28 @@ export class OneTimeCodeComponent implements OnInit {
             return of(true);
           }
 
-          this.code = '';
-          this.codeInput?.clear();
-          this.codeInput?.focusOnField(0);
+          this._clearCode();
 
-          return throwError(() => new Error(response.error.message));
+          // Throwing the message attaches it to the code field via fsForm, so it
+          // renders below the input like the password/email validation messages.
+          return throwError(() => response.error.message);
         }),
       );
   };
+
+  public submit = (): Observable<any> => {
+    return of(true);
+  };
+
+  private _clearCode(): void {
+    this.code = '';
+    this.codeInput?.clear();
+    this.codeInput?.focusOnField(0);
+
+    // Drop any validation message left from a previous failed code so the
+    // freshly cleared input starts clean.
+    this.form?.reset();
+  }
 
   private _sendCode(): Observable<boolean> {
     return this._signService
