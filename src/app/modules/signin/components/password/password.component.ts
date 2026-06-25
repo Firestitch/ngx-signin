@@ -72,6 +72,14 @@ export class PasswordComponent implements AfterContentInit {
   }
 
   public validatePassword = (): Observable<any> => {
+    // Don't POST an empty password (e.g. submit fired before the field was
+    // filled, or an empty autofill). Surface it inline like any other error.
+    if (!this.password) {
+      this.autofocus.focus();
+
+      return throwError(() => 'Please enter your password');
+    }
+
     return this._signService
       .signin(this.email, this.password)
       .pipe(

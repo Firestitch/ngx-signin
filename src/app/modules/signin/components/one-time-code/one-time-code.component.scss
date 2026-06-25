@@ -1,14 +1,19 @@
 .one-time-code {
-  fs-code-input {
-    margin-bottom: 5px;
-  }
+  .one-time-code-field {
+    fs-code-input {
+      margin-bottom: 5px;
+    }
 
-  .one-time-code-message {
-    text-align: center;
-    margin-bottom: 15px;
-    min-height: 18px;
-    color: var(--mat-sys-error, #f44336);
-    font-size: 12px;
+    .one-time-code-message {
+      text-align: center;
+      min-height: 18px;
+      margin-bottom: 15px;
+
+      .fs-form-error {
+        color: var(--mat-sys-error, #f44336);
+        font-size: 12px;
+      }
+    }
   }
 
   .subheading {

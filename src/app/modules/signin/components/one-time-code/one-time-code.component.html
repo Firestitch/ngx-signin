@@ -23,18 +23,24 @@
     <p class="subheading">
       Enter the {{ codeLength }}-digit code we sent to your email
     </p>
-    <fs-code-input
-      [codeLength]="codeLength"
-      [(ngModel)]="code"
-      name="code"
-      [isPrevFocusableAfterClearing]="false"
-      [required]="true"
-      [validateOnSubmit]="true"
-      [fsFormFunction]="validateCode"
-      [messageSelector]="'.one-time-code-message'"
-      (completedLast)="codeCompleted()">
-    </fs-code-input>
-    <div class="one-time-code-message"></div>
+    <div class="one-time-code-field">
+      <fs-code-input
+        [codeLength]="codeLength"
+        [(ngModel)]="code"
+        name="code"
+        [isPrevFocusableAfterClearing]="false"
+        [required]="true"
+        [validateOnSubmit]="true"
+        [fsFormFunction]="validateCode"
+        [wrapperSelector]="'.one-time-code-field'"
+        [messageSelector]="'.one-time-code-message'"
+        [hintSelector]="'.one-time-code-hint'"
+        (completedLast)="codeCompleted()">
+      </fs-code-input>
+      <div class="one-time-code-message">
+        <div class="one-time-code-hint"></div>
+      </div>
+    </div>
   </div>
   <app-stacked-buttons>
     <button
