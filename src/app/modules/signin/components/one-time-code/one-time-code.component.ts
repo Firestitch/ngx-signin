@@ -111,10 +111,11 @@ export class OneTimeCodeComponent implements OnInit {
             return of(true);
           }
 
-          this._clearCode();
+          // Clear the entered digits and refocus, but keep the form's
+          // submitted/invalid state so the message below renders. Throwing the
+          // message attaches it to the code field via fsForm.
+          this._clearCodeInput();
 
-          // Throwing the message attaches it to the code field via fsForm, so it
-          // renders below the input like the password/email validation messages.
           return throwError(() => response.error.message);
         }),
       );
@@ -124,13 +125,17 @@ export class OneTimeCodeComponent implements OnInit {
     return of(true);
   };
 
-  private _clearCode(): void {
+  private _clearCodeInput(): void {
     this.code = '';
     this.codeInput?.clear();
     this.codeInput?.focusOnField(0);
+  }
 
-    // Drop any validation message left from a previous failed code so the
-    // freshly cleared input starts clean.
+  private _clearCode(): void {
+    this._clearCodeInput();
+
+    // Resending issues a fresh code, so drop any validation message left from a
+    // previous failed attempt and reset the form's submitted state.
     this.form?.reset();
   }
 

@@ -23,7 +23,7 @@
     <p class="subheading">
       Enter the {{ codeLength }}-digit code we sent to your email
     </p>
-    <div class="one-time-code-field">
+    <div class="fs-form-wrapper one-time-code-field">
       <fs-code-input
         [codeLength]="codeLength"
         [(ngModel)]="code"
@@ -32,13 +32,10 @@
         [required]="true"
         [validateOnSubmit]="true"
         [fsFormFunction]="validateCode"
-        [wrapperSelector]="'.one-time-code-field'"
-        [messageSelector]="'.one-time-code-message'"
-        [hintSelector]="'.one-time-code-hint'"
         (completedLast)="codeCompleted()">
       </fs-code-input>
-      <div class="one-time-code-message">
-        <div class="one-time-code-hint"></div>
+      <div class="fs-form-message">
+        <div class="fs-form-hint"></div>
       </div>
     </div>
   </div>
