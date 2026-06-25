@@ -85,7 +85,7 @@ export class PasswordComponent implements AfterContentInit {
 
           this.autofocus.focus();
 
-          return throwError(() => new Error(response.error.message));
+          return throwError(() => response.error.message);
         }),
       );
   };
