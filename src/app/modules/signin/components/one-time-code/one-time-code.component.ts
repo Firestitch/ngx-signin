@@ -111,10 +111,11 @@ export class OneTimeCodeComponent implements OnInit {
             return of(true);
           }
 
-          // Clear the entered digits and refocus, but keep the form's
-          // submitted/invalid state so the message below renders. Throwing the
-          // message attaches it to the code field via fsForm.
-          this._clearCodeInput();
+          // Keep the entered digits so the thrown API message renders below the
+          // field. Clearing them would empty the control and the `required`
+          // validator would mask the real message with "This field is required".
+          // Just refocus the first box so the user can retype over the code.
+          this.codeInput?.focusOnField(0);
 
           return throwError(() => response.error.message);
         }),
