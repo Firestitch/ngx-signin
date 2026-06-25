@@ -30,6 +30,13 @@
       </ng-template>
     </ng-template>
   </fs-list-column>
+  <fs-list-column title="Type">
+    <ng-template
+        fs-list-cell
+        let-row="row">
+      {{ SigninTypes[row.type] }}
+    </ng-template>
+  </fs-list-column>
   <fs-list-column title="Status">
     <ng-template
         fs-list-cell

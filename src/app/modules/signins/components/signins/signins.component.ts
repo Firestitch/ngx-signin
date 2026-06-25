@@ -18,6 +18,7 @@ import { map, switchMap, takeUntil } from 'rxjs/operators';
 
 import { SigninMethods } from '../../../../consts/signin-methods.const';
 import { SigninStates } from '../../../../consts/signin-states.const';
+import { SigninTypes } from '../../../../consts/signin-types.const';
 import { SigninVerificationCodeStates } from '../../../../consts/signin-verification-code-states.const';
 
 
@@ -58,6 +59,7 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
   public listComponent: FsListComponent;
 
   public listConfig: FsListConfig;
+  public SigninTypes = index(SigninTypes, 'value', 'name');
   public SigninStates = index(SigninStates, 'value', 'name');
   public SigninVerificationCodeStates = index(SigninVerificationCodeStates, 'value', 'name');
   public SigninMethods = index(SigninMethods, 'value', 'name');
@@ -98,11 +100,25 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
           label: ['From', 'To'],
         },
         {
+          name: 'type',
+          type: ItemType.Select,
+          multiple: true,
+          values: SigninTypes,
+          label: 'Type',
+        },
+        {
           name: 'state',
           type: ItemType.Select,
           multiple: true,
           values: SigninStates,
           label: 'Status',
+        },
+        {
+          name: 'method',
+          type: ItemType.Select,
+          multiple: true,
+          values: SigninMethods,
+          label: 'Method',
         },
         {
           name: 'platform',

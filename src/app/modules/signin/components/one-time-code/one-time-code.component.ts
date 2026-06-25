@@ -22,6 +22,7 @@ import { FsMessage } from '@firestitch/message';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
 
+import { ONE_TIME_PASSWORD_PREFIX } from '../../../../consts/one-time-password-prefix.const';
 import { signinRequiresVerification } from '../../helpers';
 import { StackedButtonsComponent } from '../../modules/stacked-buttons/components/stacked-buttons/stacked-buttons.component';
 import { SigninService } from '../../services';
@@ -99,7 +100,7 @@ export class OneTimeCodeComponent implements OnInit {
 
   public submit = (): Observable<any> => {
     return this._signService
-      .signin(this.email, this.code)
+      .signin(this.email, `${ONE_TIME_PASSWORD_PREFIX}${this.code}`)
       .pipe(
         tap((response) => this.signedIn.emit(response)),
         catchError((response) => {

@@ -3,4 +3,6 @@ export enum SigninMethod {
   Api = 'api',
   Facebook = 'facebook',
   Google = 'google',
+  Sms = 'sms',
+  App = 'app',
 }
