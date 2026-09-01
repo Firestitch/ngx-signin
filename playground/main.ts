@@ -32,7 +32,7 @@ bootstrapApplication(AppComponent, {
             factory: (message: FsMessage): SigninConfig => {
                 return {
                     trustedDeviceExpiryDays: 30,
-                    showSocialSignins: true,
+                    showSocialSignins: false,
                     beforeProcessSignin: (response) => of(response),
                     processSignin: (response, redirect) => of(response, redirect)
                         .pipe(tap(() => message.success('Successfully signed in'))),
@@ -41,6 +41,7 @@ bootstrapApplication(AppComponent, {
                     }),
                     signinSubtitle: 'Your first step to a better future',
                     verificationCodeLength: 4,
+                    oneTimePassword: false,
                 };
             },
             deps: [FsMessage],

@@ -82,7 +82,21 @@ export class SigninService {
   }
 
   public getConfig(name, _default = null): any {
-    return this._signinConfig[name] || this._signinProviderConfig[name] || this._signinRootConfig[name] || _default;
+    // Checked with undefined rather than falsiness so that a config explicitly
+    // set to false overrides the layer below instead of falling through to it.
+    const configs = [
+      this._signinConfig,
+      this._signinProviderConfig,
+      this._signinRootConfig,
+    ];
+
+    for(const config of configs) {
+      if(config[name] !== undefined) {
+        return config[name];
+      }
+    }
+
+    return _default;
   }
 
   public get api(): FsApi {

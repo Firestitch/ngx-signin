@@ -1,16 +1,13 @@
 <fs-examples [config]="config">
+  <fs-example name="Sign In" componentName="app-signin">
+    <app-signin></app-signin>
+  </fs-example>
+
+  <fs-example name="Sign In With A Code" componentName="app-signin-code">
+    <app-signin-code></app-signin-code>
+  </fs-example>
+
   <fs-example name="Sign Ins" componentName="app-signins">
     <app-signins></app-signins>
   </fs-example>
-
-  <fs-example name="Sign" componentName="app-signin">
-    <a 
-        [routerLink]="'/signin'" 
-        color="primary"
-        mat-flat-button>
-      Sign In
-    </a>
-  </fs-example>
 </fs-examples>
-
-

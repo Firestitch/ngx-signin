@@ -2,9 +2,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { environment } from '@env';
 import { FsExampleModule } from '@firestitch/example';
+
+import { SigninCodeComponent } from '../signin-code/signin-code.component';
+import { SigninComponent } from '../signin/signin.component';
 import { SigninsComponent } from '../signins/signins.component';
-import { MatAnchor } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -13,9 +14,9 @@ import { RouterLink } from '@angular/router';
     standalone: true,
     imports: [
         FsExampleModule,
+        SigninComponent,
+        SigninCodeComponent,
         SigninsComponent,
-        MatAnchor,
-        RouterLink,
     ],
 })
 export class ExamplesComponent {

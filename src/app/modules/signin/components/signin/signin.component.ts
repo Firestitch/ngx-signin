@@ -17,7 +17,7 @@ import { signinRequiresVerification } from '../../helpers';
 import { SigninConfig } from '../../interfaces';
 import { PasswordResetComponent } from '../../modules/password-reset/components/password-reset/password-reset.component';
 import { TwoFactorVerificationComponent } from '../../modules/two-factor-verification/components/two-factor-verification/two-factor-verification.component';
-import { SigninService } from '../../services';
+import { SigninService, SocialSigninService } from '../../services';
 import { CredentialsComponent } from '../credentials/credentials.component';
 import { OneTimeCodeComponent } from '../one-time-code/one-time-code.component';
 
@@ -34,6 +34,13 @@ import { OneTimeCodeComponent } from '../one-time-code/one-time-code.component';
     PasswordResetComponent,
     OneTimeCodeComponent
 ],
+  // Scoped to the component so each fs-signin gets its own config layer.
+  // Provided at the root they share one service and the last one to init
+  // overwrites the config of every other instance on the page.
+  providers: [
+    SigninService,
+    SocialSigninService,
+  ],
 })
 export class SigninComponent implements OnInit {
 
@@ -54,10 +61,10 @@ export class SigninComponent implements OnInit {
   private _cdRef = inject(ChangeDetectorRef);  
 
   public ngOnInit(): void {
-    this._signService.signinConfig = {
-      ...this._signService.signinConfig,
-      ...this.config,
-    };
+    // Assigned as-is so the service keeps it as its own layer. Spreading the
+    // merged config in would flatten the module config on top of it and the
+    // component would no longer be able to override anything.
+    this._signService.signinConfig = this.config || {};
 
     this.signinTitle = this._signService.signinConfig.signinTitle;
     this.signinSubtitle = this._signService.signinConfig.signinSubtitle;
