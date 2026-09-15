@@ -48,7 +48,7 @@
     "@firestitch/clear": "^18.0.15",
     "@firestitch/code-input": "^18.0.0",
     "@firestitch/common": "^18.0.17",
-    "@firestitch/component-tools": "^18.0.17",
+    "@firestitch/component-tools": "^18.0.18",
     "@firestitch/cookie": "^18.0.0",
     "@firestitch/core": "^18.0.1",
     "@firestitch/country": "^18.0.3",
