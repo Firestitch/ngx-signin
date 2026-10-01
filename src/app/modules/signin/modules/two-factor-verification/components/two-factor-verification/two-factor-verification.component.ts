@@ -17,7 +17,6 @@ import { MatButton } from '@angular/material/button';
 @Component({
     selector: 'app-two-factor-verification',
     templateUrl: './two-factor-verification.component.html',
-    styleUrls: ['./two-factor-verification.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [

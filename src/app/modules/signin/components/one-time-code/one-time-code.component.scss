@@ -1,8 +1,7 @@
 .one-time-code {
-  .one-time-code-field {
-    fs-code-input {
-      margin-bottom: 5px;
-    }
+  // fs-code-input draws its own error message under the boxes.
+  fs-code-input {
+    margin-bottom: 20px;
   }
 
   .subheading {
@@ -13,19 +12,6 @@
 :host ::ng-deep {
   .label-icon {
     display: inline-flex;
-  }
-
-  // fsForm injects the .fs-form-error element via Renderer2, so it carries no
-  // emulated-encapsulation attribute — it must be styled through ::ng-deep.
-  .one-time-code-field .fs-form-message {
-    text-align: center;
-    min-height: 18px;
-    margin-bottom: 15px;
-
-    .fs-form-error {
-      color: var(--mat-sys-error, #f44336);
-      font-size: 12px;
-    }
   }
 }
 
