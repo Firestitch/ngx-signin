@@ -30,12 +30,14 @@
     <button
         mat-stroked-button
         type="button"
+        [disabled]="form?.submitting"
         (click)="verification.showVerificationMethods()">
       Try other ways to verify
     </button>
     <button
         mat-stroked-button
         type="button"
+        [disabled]="form?.submitting"
         (click)="cancel()">
       Back to signin
     </button>

@@ -45,13 +45,14 @@
     <button
         mat-stroked-button
         type="button"
-        [disabled]="resending"
+        [disabled]="resending || form?.submitting"
         (click)="resend()">
       Resend code
     </button>
     <button
         mat-stroked-button
         type="button"
+        [disabled]="form?.submitting"
         (click)="changeEmail()">
       Back to sign in
     </button>
