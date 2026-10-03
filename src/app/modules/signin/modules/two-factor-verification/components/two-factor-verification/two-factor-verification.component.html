@@ -21,20 +21,20 @@
     </button>
     @if (verificationMethod?.type !== 'app') {
       <button
-          mat-button
+          mat-stroked-button
           [fs2faVerificationResend]="verification"
           type="button">
         Resend
       </button>
     }
     <button
-        mat-button
+        mat-stroked-button
         type="button"
         (click)="verification.showVerificationMethods()">
       Try other ways to verify
     </button>
     <button
-        mat-button
+        mat-stroked-button
         type="button"
         (click)="cancel()">
       Back to signin
