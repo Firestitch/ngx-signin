@@ -46,7 +46,7 @@
         <div
             class="small"
             [matTooltip]="'Recipient: ' + row.verificationCode.recipient">
-          {{ row.verificationCode.message }}
+          {{ row.state === SigninState.Success ? row.verificationCode.message : row.message }}
         </div>
       } @else {
         <div class="small">

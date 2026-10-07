@@ -20,6 +20,7 @@ import { SigninMethods } from '../../../../consts/signin-methods.const';
 import { SigninStates } from '../../../../consts/signin-states.const';
 import { SigninTypes } from '../../../../consts/signin-types.const';
 import { SigninVerificationCodeStates } from '../../../../consts/signin-verification-code-states.const';
+import { SigninState } from '../../../../enums/signin-state.enum';
 
 
 @Component({
@@ -63,6 +64,7 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
   public SigninStates = index(SigninStates, 'value', 'name');
   public SigninVerificationCodeStates = index(SigninVerificationCodeStates, 'value', 'name');
   public SigninMethods = index(SigninMethods, 'value', 'name');
+  public SigninState = SigninState;
 
   private _destroy$ = new Subject();
   private _prompt = inject(FsPrompt);
