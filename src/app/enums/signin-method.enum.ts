@@ -5,4 +5,5 @@ export enum SigninMethod {
   Google = 'google',
   Sms = 'sms',
   App = 'app',
+  Oauth = 'oauth',
 }

@@ -7,4 +7,5 @@ export const SigninMethods = [
   { name: 'Google', value: SigninMethod.Google },
   { name: 'SMS', value: SigninMethod.Sms },
   { name: 'App', value: SigninMethod.App },
+  { name: 'OAuth', value: SigninMethod.Oauth },
 ];
