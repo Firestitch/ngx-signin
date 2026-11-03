@@ -88,7 +88,7 @@ export class FsSigninsComponent implements OnInit, OnDestroy {
 
   private _initListConfig(): void {
     this.listConfig = {
-      sort: { value: 'create_date', direction: 'desc' },
+      sort: { value: 'createDate', direction: 'desc' },
       filters: [
         ...(this.prependFilters || []),
         {
