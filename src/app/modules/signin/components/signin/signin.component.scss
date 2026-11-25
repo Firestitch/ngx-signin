@@ -10,4 +10,6 @@
 
 .subheading {
   text-align: center;
+  // A long email in the line ("...has been sent to <email>...") wraps inside the card.
+  overflow-wrap: anywhere;
 }
