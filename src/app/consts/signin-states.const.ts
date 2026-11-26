@@ -4,4 +4,5 @@ export const SigninStates = [
   { name: 'Success', value: SigninState.Success },
   { name: 'Failure', value: SigninState.Failure },
   { name: 'Requested', value: SigninState.Requested },
+  { name: 'Throttled', value: SigninState.Throttled },
 ];
